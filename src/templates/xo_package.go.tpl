@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-    "github.com/gofrs/uuid"
-    "github.com/lib/pq"
+	uuid "github.com/satori/go.uuid"
+	"github.com/lib/pq"
 )
 
