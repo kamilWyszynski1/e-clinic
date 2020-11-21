@@ -73,6 +73,7 @@ type Order struct {
 	ExtOrderID    string       `json:"extOrderId"` // user will be redirect here after payment
 	Buyer         Buyer        `json:"buyer"`
 	Products      []Product    `json:"products"`
+	Status        string       `json:"status"`
 	OrderInfo
 }
 
@@ -120,8 +121,14 @@ type CreateOrderResponse struct {
 }
 
 type RetrieveOrderResponse struct {
-	Orders []Order      `json:"orders"`
-	Status StatusHolder `json:"status"`
+	Orders     []Order      `json:"orders"`
+	Status     StatusHolder `json:"status"`
+	Properties []Property
+}
+
+type Property struct {
+	Name  string `json:"name"`
+	Value string `json:"value"`
 }
 
 type StatusHolder struct {

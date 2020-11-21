@@ -15,15 +15,25 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+type patientInfo struct {
+	Name, Email string
+}
+
 type newPayment struct {
 	AppointmentID uuid.UUID
 	Price         float64
-	Name, Email   string
+	patientInfo
+}
+
+type pendingPayment struct {
+	OrderID       string
+	AppointmentID uuid.UUID
+	patientInfo
 }
 
 type channels struct {
 	AcceptedCh chan *newPayment
-	ToBePaidCh chan string
+	ToBePaidCh chan *pendingPayment
 }
 
 type Watcher struct {
@@ -41,8 +51,8 @@ func NewWatcher(db *dbr.Session, log logrus.FieldLogger, sleep time.Duration, pa
 		log:   log,
 		sleep: sleep,
 		ch: channels{
-			AcceptedCh: make(chan *newPayment, 20),
-			ToBePaidCh: make(chan string),
+			AcceptedCh: make(chan *newPayment, 100),
+			ToBePaidCh: make(chan *pendingPayment, 100),
 		},
 		paymentCli: paymentCli,
 		mailCli:    mailCli,
@@ -97,12 +107,21 @@ func (w Watcher) queryPayments(log *logrus.Entry) {
 			w.ch.AcceptedCh <- &newPayment{
 				AppointmentID: p.AppointmentID,
 				Price:         p.Fee * float64(p.Duration) / 60. / 60.,
-				Name:          p.Email,
-				Email:         p.Name,
+				patientInfo: patientInfo{
+					Name:  p.Email,
+					Email: p.Name,
+				},
 			}
 		case models.ApoitntmentstateenumToBePaid: // check if payment passed
 			if p.OrderID.Valid && p.OrderID.String != "" {
-				w.ch.ToBePaidCh <- p.OrderID.String
+				w.ch.ToBePaidCh <- &pendingPayment{
+					OrderID:       p.OrderID.String,
+					AppointmentID: p.AppointmentID,
+					patientInfo: patientInfo{
+						Name:  p.Email,
+						Email: p.Name,
+					},
+				}
 			} else {
 				w.log.Error("empty orderID when appointment in ToBePaid state")
 			}
@@ -118,61 +137,104 @@ func (w Watcher) watchOverPayments() {
 	for {
 		select {
 		case a := <-w.ch.AcceptedCh:
-			log.Info("creating new payment")
-			fmt.Println(a.Price)
-			order, err := w.paymentCli.OrderCreateRequest(&payugo.Order{
-				Description:  fmt.Sprintf("Payment for appointment: %s", a.AppointmentID),
-				CurrencyCode: payugo.CurrencyCodePLN,
-				TotalAmount:  strconv.Itoa(int(a.Price)),
-				ContinueURL:  "",
-				ExtOrderID:   "testqweqwe123123reterter",
-				CustomerIP:   "127.0.0.1",
-				Buyer: payugo.Buyer{
-					Email:     "kamil.wyszynski.97@gmail.com",
-					Phone:     "",
-					FirstName: "Kamil",
-					LastName:  "Wyszyński",
-					Language:  payugo.LanguagePL,
-				},
-				Products: []payugo.Product{
-					{
-						Name:      fmt.Sprintf("Appointment: %s", a.AppointmentID),
-						UnitPrice: strconv.Itoa(int(a.Price) * 1000),
-						Quantity:  "1",
-					},
-				},
-			})
-			if err != nil {
-				log.WithError(err).Error("failed to create new payment")
-				continue
+			log.Debug("creating new payment")
+			if err := w.handleAcceptedPayment(a); err != nil {
+				log.WithError(err).Error("failed to handle accepted payment")
 			}
-
-			_, err = w.mailCli.SendEmail(
-				a.Name, a.Email, "E-clinic payment",
-				fmt.Sprintf("your payment, click here: %s", order.RedirectURI))
-			if err != nil {
-				log.WithError(err).Error("failed to send email")
-				continue
+			log.Debug("created new payment")
+		case t := <-w.ch.ToBePaidCh:
+			log.Debug("handling existing payment")
+			if err := w.handlePendingPayment(t); err != nil {
+				log.WithError(err).Error("failed to handle accepted payment")
 			}
-
-			p := models.Payment{
-				ID:          uuid.NewV4(),
-				Appointment: a.AppointmentID,
-				Price:       a.Price,
-				OrderID:     order.OrderID,
-				Status:      order.Status.StatusDesc + ";" + order.Status.StatusCode.String(),
-			}
-			if err := p.Insert(w.db); err != nil {
-				log.WithError(err).Error("failed to insert new payment")
-				continue
-			}
-
-			if err := handler.ChangeAppointmentStatus(w.db, a.AppointmentID, models.ApoitntmentstateenumToBePaid); err != nil {
-				log.WithError(err).Error("failed to change appointment state")
-				continue
-			}
-
-			log.Info("created new payment")
+			log.Debug("handled existing payment")
 		}
 	}
+}
+
+func (w Watcher) handleAcceptedPayment(a *newPayment) error {
+	order, err := w.paymentCli.OrderCreateRequest(&payugo.Order{
+		Description:  fmt.Sprintf("Payment for appointment: %s", a.AppointmentID),
+		CurrencyCode: payugo.CurrencyCodePLN,
+		TotalAmount:  strconv.Itoa(int(a.Price)),
+		ContinueURL:  "",
+		ExtOrderID:   a.AppointmentID.String(),
+		CustomerIP:   "127.0.0.1",
+		Buyer: payugo.Buyer{
+			Email:     "kamil.wyszynski.97@gmail.com",
+			Phone:     "",
+			FirstName: "Kamil",
+			LastName:  "Wyszyński",
+			Language:  payugo.LanguagePL,
+		},
+		Products: []payugo.Product{
+			{
+				Name:      fmt.Sprintf("Appointment: %s", a.AppointmentID),
+				UnitPrice: strconv.Itoa(int(a.Price) * 1000),
+				Quantity:  "1",
+			},
+		},
+	})
+	if err != nil {
+		return err
+	}
+
+	_, err = w.mailCli.SendEmail(
+		a.Name, a.Email, "E-clinic payment",
+		fmt.Sprintf("your payment, click here: %s", order.RedirectURI))
+	if err != nil {
+		return err
+	}
+
+	p := models.Payment{
+		ID:          uuid.NewV4(),
+		Appointment: a.AppointmentID,
+		Price:       a.Price,
+		OrderID:     order.OrderID,
+		Status:      order.Status.StatusDesc + ";" + order.Status.StatusCode.String(),
+	}
+	if err := p.Insert(w.db); err != nil {
+		return err
+	}
+
+	if err := handler.ChangeAppointmentStatus(w.db, a.AppointmentID, models.ApoitntmentstateenumToBePaid); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (w Watcher) handlePendingPayment(p *pendingPayment) error {
+	order, err := w.paymentCli.OrderRetrieveRequest(p.OrderID)
+	if err != nil {
+		return err
+	}
+	if order.Orders == nil {
+		w.log.Debug("empty orders")
+		return nil
+	} else if order.Orders[0].Status != payugo.StatusCompleted.String() {
+		w.log.Debugf("invalid order status: %s", order.Orders[0].Status)
+		return nil
+	}
+
+	_, err = w.mailCli.SendEmail(
+		p.Name, p.Email, "E-clinic appointment scheduled",
+		"Your appointment was scheduled and paid properly, see you soon!")
+	if err != nil {
+		return err
+	}
+
+	if err := handler.ChangeAppointmentStatus(w.db, p.AppointmentID, models.ApoitntmentstateenumOk); err != nil {
+		return err
+	}
+
+	payment, err := models.PaymentByAppointment(w.db, p.AppointmentID)
+	if err != nil {
+		return err
+	}
+	payment.Status = "ACCEPTED"
+	if err := payment.Update(w.db); err != nil {
+		return err
+	}
+	w.log.Debug("appointment payment accepted")
+	return nil
 }

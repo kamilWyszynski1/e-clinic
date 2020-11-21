@@ -5,7 +5,8 @@ type Status string
 
 const (
 	// 201 Created
-	StatusSuccess Status = "SUCCESS"
+	StatusSuccess   Status = "SUCCESS"
+	StatusCompleted Status = "COMPLETED"
 	// 302 Found
 	StatusWarningContinueRedirect Status = "WARNING_CONTINUE_REDIRECT"
 	StatusWarningContinue3DS      Status = "WARNING_CONTINUE_3DS"

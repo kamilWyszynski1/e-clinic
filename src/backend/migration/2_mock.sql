@@ -1,17 +1,17 @@
-INSERT INTO patient(name, surname, email, phone_number, age)
-VALUES ('John', 'Cena', 'kamil.wyszynski@wp.pl', '500600700', 20);
+INSERT INTO patient(id, name, surname, email, phone_number, age)
+VALUES ('147fc868-efa7-4f37-b85c-6a3f05e78b44', 'John', 'Cena', 'kamil.wyszynski.97@gmail.com', '500600700', 20);
 
 INSERT INTO patient(name, surname, email, phone_number, age)
-VALUES ('Robert', 'Bauer', 'kamil.wyszynski@wp.pl', '500600700', 30);
+VALUES ('Robert', 'Bauer', 'kamil.wyszynski.97@gmail.com', '500600700', 30);
 
 INSERT INTO patient(name, surname, email, phone_number, age)
-VALUES ('Margo', 'Berger', 'kamil.wyszynski@wp.pl', '500600700', 40);
+VALUES ('Margo', 'Berger', 'kamil.wyszynski.97@gmail.com', '500600700', 40);
 
 INSERT INTO patient(name, surname, email, phone_number, age)
-VALUES ('Johny', 'Gruber', 'kamil.wyszynski@wp.pl', '500600700', 50);
+VALUES ('Johny', 'Gruber', 'kamil.wyszynski.97@gmail.com', '500600700', 50);
 
 INSERT INTO patient(name, surname, email, phone_number, age)
-VALUES ('David', 'Kowalski', 'kamil.wyszynski@wp.pl', '500600700', 60);
+VALUES ('David', 'Kowalski', 'kamil.wyszynski.97@gmail.com', '500600700', 60);
 
 -- DOC 1
 INSERT INTO specialist(id, name, surname, specialities)

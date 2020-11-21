@@ -17,7 +17,7 @@ type Assistant interface {
 	RejectAppointment(aID uuid.UUID) (int, error)
 
 	// CreateAppointment checks if appointment is valid and schedules it
-	CreateAppointment(a *Appointment) (int, error)
+	CreateAppointment(a *Appointment) (*models.Appointment, int, error)
 	GetAppointments(ar *AppointmentsRequest) (*AppointmentList, int, error)
 }
 

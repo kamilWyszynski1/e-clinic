@@ -185,6 +185,58 @@ func (p *Payment) AppointmentByPaymentAppointmentFkey(db XODB) (*Appointment, er
 
 }
 
+// PaymentByAppointment retrieves a row from 'public.payment' as a Payment.
+//
+// Generated from index 'payment_appointment_key'.
+func PaymentByAppointment(db XODB, appointment uuid.UUID) (*Payment, error) {
+	var err error
+
+	// sql query
+	const sqlstr = `SELECT ` +
+		`id, appointment, price, order_id, status ` +
+		`FROM public.payment ` +
+		`WHERE appointment = $1`
+
+	// run query
+	XOLog(sqlstr, appointment)
+	p := Payment{
+		_exists: true,
+	}
+
+	err = db.QueryRow(sqlstr, appointment).Scan(&p.ID, &p.Appointment, &p.Price, &p.OrderID, &p.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}
+
+// PaymentByOrderID retrieves a row from 'public.payment' as a Payment.
+//
+// Generated from index 'payment_order_id_key'.
+func PaymentByOrderID(db XODB, orderID string) (*Payment, error) {
+	var err error
+
+	// sql query
+	const sqlstr = `SELECT ` +
+		`id, appointment, price, order_id, status ` +
+		`FROM public.payment ` +
+		`WHERE order_id = $1`
+
+	// run query
+	XOLog(sqlstr, orderID)
+	p := Payment{
+		_exists: true,
+	}
+
+	err = db.QueryRow(sqlstr, orderID).Scan(&p.ID, &p.Appointment, &p.Price, &p.OrderID, &p.Status)
+	if err != nil {
+		return nil, err
+	}
+
+	return &p, nil
+}
+
 // PaymentByID retrieves a row from 'public.payment' as a Payment.
 //
 // Generated from index 'payment_pkey'.

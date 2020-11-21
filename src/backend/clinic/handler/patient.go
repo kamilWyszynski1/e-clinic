@@ -11,12 +11,12 @@ import (
 
 const selectFeeBySpecialist = `SELECT id FROM specialist_fee WHERE specialist = ? AND speciality = ?`
 
-func (h Handler) CreateAppointment(a *clinic.Appointment) (int, error) {
+func (h Handler) CreateAppointment(a *clinic.Appointment) (*models.Appointment, int, error) {
 	log := h.log.WithField("method", "CreateAppointment")
 
 	if err := a.Invalidate(); err != nil {
 		log.WithError(err).Error("invalid appointment")
-		return http.StatusBadRequest, err
+		return nil, http.StatusBadRequest, err
 	}
 
 	tr, _, err := h.GetFreeTime(a.SpecialistID, &clinic.TimeRange{
@@ -24,7 +24,7 @@ func (h Handler) CreateAppointment(a *clinic.Appointment) (int, error) {
 		To:   a.ScheduledAt.Add(a.Duration.Duration),
 	})
 	if err != nil {
-		return http.StatusInternalServerError, nil
+		return nil, http.StatusInternalServerError, nil
 	}
 
 	for _, r := range tr.Ranges {
@@ -33,14 +33,14 @@ func (h Handler) CreateAppointment(a *clinic.Appointment) (int, error) {
 		}
 	}
 	log.Warn("specialist not available")
-	return http.StatusBadRequest, errors.New("specialist is not available then")
+	return nil, http.StatusBadRequest, errors.New("specialist is not available then")
 
 Insert:
 
 	var specialistFeeID uuid.UUID
 	if err := h.db.SelectBySql(selectFeeBySpecialist, a.SpecialistID, a.Speciality).LoadOne(&specialistFeeID); err != nil {
 		log.WithError(err).Error("failed to query specialist fee")
-		return http.StatusBadRequest, err
+		return nil, http.StatusBadRequest, err
 	}
 	ap := models.Appointment{
 		ID:            uuid.NewV4(),
@@ -52,7 +52,7 @@ Insert:
 	}
 	if err := ap.Insert(h.db); err != nil {
 		log.WithError(err).Error("failed to insert appointment")
-		return http.StatusInternalServerError, nil
+		return nil, http.StatusInternalServerError, nil
 	}
 
 	form := models.AppointmentForm{
@@ -63,8 +63,8 @@ Insert:
 	}
 	if err := form.Insert(h.db); err != nil {
 		log.WithError(err).Error("failed to insert AppointmentForm")
-		return http.StatusInternalServerError, nil
+		return nil, http.StatusInternalServerError, nil
 	}
 
-	return http.StatusOK, nil
+	return &ap, http.StatusOK, nil
 }

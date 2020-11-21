@@ -17,6 +17,7 @@ import (
 
 func main() {
 	log := logrus.StandardLogger()
+	log.SetLevel(logrus.DebugLevel)
 
 	sess := db.Init(log)
 
@@ -43,7 +44,7 @@ func main() {
 	mailCli := mailing.NewClient(mailjet.NewMailjetClient("fb71068ebf8203243a86c64e951f7778", "3450a83ffd0cf668ded207e42f46830b"))
 
 	payment.NewWatcher(
-		sess, log, 10*time.Second, p, mailCli,
+		sess, log, 15*time.Second, p, mailCli,
 	).Start()
 
 	log.Info("running")

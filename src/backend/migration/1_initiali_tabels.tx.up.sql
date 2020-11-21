@@ -87,9 +87,9 @@ CREATE TABLE appointment_result
 CREATE TABLE payment
 (
     id          uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
-    appointment uuid REFERENCES appointment (id) NOT NULL,
+    appointment uuid REFERENCES appointment (id) UNIQUE NOT NULL,
     price       double precision                 NOT NULL,
-    order_id    VARCHAR                          NOT NULL,
+    order_id    VARCHAR                          UNIQUE NOT NULL,
     status      VARCHAR                          NOT NULL,
 
     created_at  TIMESTAMP WITH TIME ZONE DEFAULT now(),
