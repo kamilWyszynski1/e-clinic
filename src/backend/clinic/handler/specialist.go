@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/sirupsen/logrus"
+
 	uuid "github.com/satori/go.uuid"
 )
 
@@ -57,6 +59,30 @@ func (h Handler) MakePrescription(p *clinic.Prescription) (int, error) {
 	if _, err := h.db.UpdateBySql(finishAppointment, p.AppointmentID).Exec(); err != nil {
 		log.WithError(err).Error("failed to update appointment")
 		return http.StatusInternalServerError, nil
+	}
+	return http.StatusOK, nil
+}
+
+func (h Handler) AcceptAppointment(aID uuid.UUID) (int, error) {
+	log := h.log.WithFields(logrus.Fields{
+		"method":        "AcceptAppointment",
+		"appointmentID": aID,
+	})
+	if err := ChangeAppointmentStatus(h.db, aID, models.ApoitntmentstateenumAccepted); err != nil {
+		log.WithError(err).Error("failed to change appointment status")
+		return http.StatusInternalServerError, err
+	}
+	return http.StatusOK, nil
+}
+
+func (h Handler) RejectAppointment(aID uuid.UUID) (int, error) {
+	log := h.log.WithFields(logrus.Fields{
+		"method":        "RejectAppointment",
+		"appointmentID": aID,
+	})
+	if err := ChangeAppointmentStatus(h.db, aID, models.ApoitntmentstateenumRejected); err != nil {
+		log.WithError(err).Error("failed to change appointment status")
+		return http.StatusInternalServerError, err
 	}
 	return http.StatusOK, nil
 }

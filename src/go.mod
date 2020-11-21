@@ -9,6 +9,7 @@ require (
 	github.com/jarcoal/httpmock v1.0.6
 	github.com/lib/pq v1.8.0
 	github.com/magiconair/properties v1.8.4
+	github.com/mailjet/mailjet-apiv3-go v0.0.0-20201009050126-c24bc15a9394
 	github.com/neo4j/neo4j-go-driver v1.8.3
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/satori/go.uuid v1.2.0

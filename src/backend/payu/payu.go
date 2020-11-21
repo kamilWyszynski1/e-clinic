@@ -73,6 +73,7 @@ type Order struct {
 	ExtOrderID    string       `json:"extOrderId"` // user will be redirect here after payment
 	Buyer         Buyer        `json:"buyer"`
 	Products      []Product    `json:"products"`
+	OrderInfo
 }
 
 // Validate checks if all necessary fields were provided, should be called right before sending http request
@@ -107,28 +108,31 @@ type Product struct {
 	Quantity  string `json:"quantity"`
 }
 
+type OrderInfo struct {
+	OrderID    string `json:"orderId"`
+	ExtOrderID string `json:"extOrderId"`
+}
+
 type CreateOrderResponse struct {
 	Status      StatusHolder `json:"status"`
 	RedirectURI string       `json:"redirectUri"`
-	OrderID     string       `json:"orderId"`
-	ExtOrderID  string       `json:"extOrderId"`
-}
-
-type RetrieveOrder struct {
+	OrderInfo
 }
 
 type RetrieveOrderResponse struct {
+	Orders []Order      `json:"orders"`
+	Status StatusHolder `json:"status"`
 }
 
 type StatusHolder struct {
 	StatusCode Status `json:"statusCode"`
+	StatusDesc string `json:"statusDesc"`
 }
 
 type StatusError struct {
 	StatusHolder
 	Code        string `json:"code"`
 	CodeLiteral string `json:"codeLiteral"`
-	StatusDesc  string `json:"statusDesc"`
 }
 
 type ErrResponse struct {
@@ -138,6 +142,7 @@ type ErrResponse struct {
 // we preserve that baseURL contains a trailing slash so endpoint shouldn't start with one
 const (
 	orderCreateRequestEndpoint = "api/v2_1/orders"
+	orderRetrieveRequest       = "api/v2_1/orders/%s"
 	authorizeEndpoint          = "pl/standard/user/oauth/authorize"
 )
 

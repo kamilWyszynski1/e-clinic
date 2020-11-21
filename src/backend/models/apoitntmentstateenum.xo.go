@@ -15,6 +15,9 @@ const (
 	// ApoitntmentstateenumCreated is the 'CREATED' Apoitntmentstateenum.
 	ApoitntmentstateenumCreated = Apoitntmentstateenum("CREATED")
 
+	// ApoitntmentstateenumAccepted is the 'ACCEPTED' Apoitntmentstateenum.
+	ApoitntmentstateenumAccepted = Apoitntmentstateenum("ACCEPTED")
+
 	// ApoitntmentstateenumToBePaid is the 'TO_BE_PAID' Apoitntmentstateenum.
 	ApoitntmentstateenumToBePaid = Apoitntmentstateenum("TO_BE_PAID")
 
@@ -28,7 +31,7 @@ const (
 	ApoitntmentstateenumNotPaid = Apoitntmentstateenum("NOT_PAID")
 )
 
-var ApoitntmentstateenumValues = []Apoitntmentstateenum{ApoitntmentstateenumCreated, ApoitntmentstateenumToBePaid, ApoitntmentstateenumOk, ApoitntmentstateenumRejected, ApoitntmentstateenumNotPaid}
+var ApoitntmentstateenumValues = []Apoitntmentstateenum{ApoitntmentstateenumCreated, ApoitntmentstateenumAccepted, ApoitntmentstateenumToBePaid, ApoitntmentstateenumOk, ApoitntmentstateenumRejected, ApoitntmentstateenumNotPaid}
 
 // String returns the string value of the Apoitntmentstateenum.
 func (a Apoitntmentstateenum) String() string {
@@ -45,6 +48,9 @@ func (a *Apoitntmentstateenum) UnmarshalText(text []byte) error {
 	switch string(text) {
 	case "CREATED":
 		*a = ApoitntmentstateenumCreated
+
+	case "ACCEPTED":
+		*a = ApoitntmentstateenumAccepted
 
 	case "TO_BE_PAID":
 		*a = ApoitntmentstateenumToBePaid

@@ -24,6 +24,11 @@ github.com/lib/pq/scram
 # github.com/magiconair/properties v1.8.4
 ## explicit
 github.com/magiconair/properties/assert
+# github.com/mailjet/mailjet-apiv3-go v0.0.0-20201009050126-c24bc15a9394
+## explicit
+github.com/mailjet/mailjet-apiv3-go
+github.com/mailjet/mailjet-apiv3-go/fixtures
+github.com/mailjet/mailjet-apiv3-go/resources
 # github.com/neo4j/neo4j-go-driver v1.8.3
 ## explicit
 github.com/neo4j/neo4j-go-driver/neo4j

@@ -9,6 +9,8 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+const selectFeeBySpecialist = `SELECT id FROM specialist_fee WHERE specialist = ? AND speciality = ?`
+
 func (h Handler) CreateAppointment(a *clinic.Appointment) (int, error) {
 	log := h.log.WithField("method", "CreateAppointment")
 
@@ -34,11 +36,17 @@ func (h Handler) CreateAppointment(a *clinic.Appointment) (int, error) {
 	return http.StatusBadRequest, errors.New("specialist is not available then")
 
 Insert:
+
+	var specialistFeeID uuid.UUID
+	if err := h.db.SelectBySql(selectFeeBySpecialist, a.SpecialistID, a.Speciality).LoadOne(&specialistFeeID); err != nil {
+		log.WithError(err).Error("failed to query specialist fee")
+		return http.StatusBadRequest, err
+	}
 	ap := models.Appointment{
 		ID:            uuid.NewV4(),
 		State:         models.ApoitntmentstateenumCreated,
 		Patient:       a.PatientID,
-		Specialist:    a.SpecialistID,
+		SpecialistFee: specialistFeeID,
 		ScheduledTime: a.ScheduledAt,
 		Duration:      int(a.Duration.Seconds()),
 	}
@@ -54,7 +62,7 @@ Insert:
 		Symptoms:    a.PatientSymptoms,
 	}
 	if err := form.Insert(h.db); err != nil {
-		log.WithError(err).Error("failed to insert appointment")
+		log.WithError(err).Error("failed to insert AppointmentForm")
 		return http.StatusInternalServerError, nil
 	}
 

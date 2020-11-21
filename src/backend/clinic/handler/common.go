@@ -4,7 +4,11 @@ import (
 	"e-clinic/src/backend/clinic"
 	"e-clinic/src/backend/models"
 	"errors"
+	"fmt"
 	"net/http"
+
+	"github.com/gocraft/dbr"
+	uuid "github.com/satori/go.uuid"
 )
 
 const (
@@ -43,4 +47,16 @@ func (h Handler) GetAppointments(r *clinic.AppointmentsRequest) (*clinic.Appoint
 		Appointments: appointments,
 		Len:          len(appointments),
 	}, http.StatusOK, nil
+}
+
+const changeAppointmentStatus = `UPDATE appointment SET state = ? WHERE id = ? RETURNING true`
+
+func ChangeAppointmentStatus(db dbr.SessionRunner, apID uuid.UUID, status models.Apoitntmentstateenum) error {
+	var done bool
+	if err := db.UpdateBySql(changeAppointmentStatus, status, apID).Load(&done); err != nil {
+		return fmt.Errorf("failed to update status, %w", err)
+	} else if !done {
+		return errors.New("appointment status not changed")
+	}
+	return nil
 }

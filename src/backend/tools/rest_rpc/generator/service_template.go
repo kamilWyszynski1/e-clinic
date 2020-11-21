@@ -156,3 +156,102 @@ func (serviceInstance *{{$serviceName}}RestClient) wrapError(errMsg interface{})
 	return fmt.Errorf("%v", errMsg)
 }
 
+{{$prefix := .Prefix}}
+{{$hasWriter := false}}
+{{range .Endpoints}}
+func (serviceInstance *{{$serviceName}}RestClient) {{.Name}}({{range $i, $param := .Parameters}}{{if eq $param.ParamType 4}}{{$hasWriter = true}}{{end}}{{if gt $i 0}}, {{end}}{{$param.String}}{{end}}) {{if gt (len .Results) 1}}({{end}}{{$resultJsonTypeName := .ResultJsonTypeName}}{{range $i, $r := .Results}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}int{{end}}{{if eq $r 3}}*dbr.Tx{{end}}{{if eq $r 4}}common.Tx{{end}}{{if eq $r 1}}error{{end}}{{if eq $r 2}}*{{$resultJsonTypeName}}{{end}}{{if eq $r 5}}airline.Config{{end}}{{end}}{{if gt (len .Results) 1}}){{end}} {
+	u, err := url.Parse(serviceInstance.address + "{{$prefix}}/{{$serviceName}}/{{.Name}}")
+	if err != nil {
+		return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+	}{{$hasParam := 0}}{{$hasJsonParam := 0}}{{range .Parameters}}{{if ne .ParamType 3}}{{$hasParam = 1}}{{else}}{{$hasJsonParam = 1}}{{end}}{{end}}{{if $hasParam}}
+	query := u.Query(){{end}}{{range .Parameters}}{{if ne .ParamType 3}}{{if ne .ParamType 4}}{{if ne .ParamType 7}}
+	query.Set("{{.Name}}", {{if eq .ParamType 0}}strconv.Itoa({{.Name}}){{end}}{{if eq .ParamType 1}}{{.Name}}{{end}}{{if eq .ParamType 5}}{{.Name}}.String(){{end}}{{if eq .ParamType 2}}strconv.FormatBool({{.Name}}){{end}}{{if eq .ParamType 6}}strconv.FormatFloat({{.Name}}, 'f', -1, 64){{end}}){{end}}{{end}}{{end}}{{end}}
+	{{if $hasParam}}
+	u.RawQuery = query.Encode(){{end}}
+	{{$Results := .Results}}{{range .Parameters}}{{if eq .ParamType 3}}
+	data, err := json.Marshal({{.Name}})
+	if err != nil {
+		return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+	}{{end}}{{end}}
+	
+	{{- if .IsPost }}
+		{{- if .HasContext }}
+			req, err := http.NewRequestWithContext(ctx, http.MethodPost, u.String(), bytes.NewReader(data))
+			if err != nil {
+				return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+			resp, err := serviceInstance.client.Do(req)
+			if err != nil {
+				return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- else }}
+			resp := serviceInstance.client.Post(u.String(), {{if $hasJsonParam}}{{range .Parameters}}{{if eq .ParamType 3}}data{{end}}{{end}}{{else}}nil{{end}})
+			if resp.Err != nil {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}resp.Err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- end }}
+	{{- else }}
+		{{- if .HasContext }}
+			req, err := http.NewRequestWithContext(ctx, http.MethodGet, u.String(), nil)
+			if err != nil {
+				return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+			resp, err := serviceInstance.client.Do(req)
+			if err != nil {
+				return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- else }}
+			resp := serviceInstance.client.Get(u.String())
+			if resp.Err != nil {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}resp.Err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- end }}
+	{{- end }}
+	{{$hasBodyJson := 0}}{{$hasRespErr := 0}}{{range .Results}}{{if eq . 2}}{{$hasBodyJson = 1}}{{end}}{{if eq . 1}}{{$hasRespErr = 1}}{{end}}{{end}}{{if $hasRespErr}}
+	{{- if .HasContext }}
+		body, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return{{range $i, $r := $Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+		}
+		if len(body) > 0 {
+	{{- else }}
+		if len(resp.Body) > 0 {
+	{{- end }}
+		{{- if $hasWriter}}
+		if resp.StatusCode == http.StatusOK {
+			if _, err := writer.Write(resp.Body); err != nil {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			} else {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}-1{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}nil{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		}
+		{{- end}}
+		respErr := map[string]interface{}{}
+		{{- if .HasContext }}
+			if err := json.Unmarshal(body, &respErr); err != nil {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}resp.StatusCode{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- else }}
+			if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+				return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}resp.StatusCode{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+			}
+		{{- end }}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}resp.StatusCode{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}serviceInstance.wrapError(errorMessage){{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+		}
+	}{{end}}{{if $hasBodyJson}}
+	respJson := &{{.ResultJsonTypeName}}{}
+	{{- if .HasContext }}
+		if len(body) > 0 {
+		if err := json.Unmarshal(body, respJson); err != nil {
+	{{- else }}
+		if len(resp.Body) > 0 {
+		if err := json.Unmarshal(resp.Body, respJson); err != nil {
+	{{- end }}
+			return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}resp.StatusCode{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 1}}err{{end}}{{if eq $r 2}}nil{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+		}
+	}{{end}}
+	return{{range $i, $r := .Results}}{{if eq $i 0}} {{end}}{{if gt $i 0}}, {{end}}{{if eq $r 0}}resp.StatusCode{{end}}{{if eq $r 1}}nil{{end}}{{if eq $r 3}}nil{{end}}{{if eq $r 4}}nil{{end}}{{if eq $r 2}}respJson{{end}}{{if eq $r 5}}nil{{end}}{{end}}
+	{{- $hasWriter = false }}
+}
+{{end}}{{end}}`

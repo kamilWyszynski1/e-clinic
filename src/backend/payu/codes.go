@@ -18,3 +18,5 @@ const (
 	// 404 Not found
 	StatusDataNotFound Status = "DATA_NOT_FOUND"
 )
+
+func (s Status) String() string { return string(s) }

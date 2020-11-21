@@ -10,7 +10,7 @@ CREATE TABLE patient
     email        VARCHAR    NOT NULL,
     phone_number VARCHAR    NOT NULL,
     age          int        NOT NULL,
-    gender       genderenum NOT NULL DEFAULT 'XX',
+    gender       genderenum NOT NULL      DEFAULT 'XX',
 
     created_at   TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at   TIMESTAMP WITH TIME ZONE
@@ -42,6 +42,7 @@ CREATE TABLE specialist_fee
 
 CREATE TYPE apoitntmentstateenum AS ENUM (
     'CREATED', -- patient created appointment, waiting for specialist to accept
+    'ACCEPTED', -- specialist accepted appointment
     'TO_BE_PAID', -- specialist accepted, waiting for patient to pay
     'OK', -- patient paid for appointment
     'REJECTED', -- specialist rejected appointment
@@ -50,14 +51,14 @@ CREATE TYPE apoitntmentstateenum AS ENUM (
 
 CREATE TABLE appointment
 (
-    id             uuid PRIMARY KEY                         DEFAULT uuid_generate_v4(),
-    state          apoitntmentstateenum            NOT NULL DEFAULT 'CREATED',
-    patient        uuid REFERENCES patient (id)    NOT NULL,
-    specialist     uuid REFERENCES specialist (id) NOT NULL,
-    scheduled_time TIMESTAMP WITH TIME ZONE        NOT NULL,
-    duration       INT                             NOT NULL, -- duration in seconds
+    id             uuid PRIMARY KEY                             DEFAULT uuid_generate_v4(),
+    state          apoitntmentstateenum                NOT NULL DEFAULT 'CREATED',
+    patient        uuid REFERENCES patient (id)        NOT NULL,
+    specialist_fee uuid REFERENCES specialist_fee (id) NOT NULL,
+    scheduled_time TIMESTAMP WITH TIME ZONE            NOT NULL,
+    duration       INT                                 NOT NULL, -- duration in seconds
 
-    created_at     TIMESTAMP WITH TIME ZONE                 DEFAULT now(),
+    created_at     TIMESTAMP WITH TIME ZONE                     DEFAULT now(),
     updated_at     TIMESTAMP WITH TIME ZONE
 );
 
@@ -81,4 +82,16 @@ CREATE TABLE appointment_result
 
     created_at   TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at   TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE payment
+(
+    id          uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
+    appointment uuid REFERENCES appointment (id) NOT NULL,
+    price       double precision                 NOT NULL,
+    order_id    VARCHAR                          NOT NULL,
+    status      VARCHAR                          NOT NULL,
+
+    created_at  TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    updated_at  TIMESTAMP WITH TIME ZONE
 );

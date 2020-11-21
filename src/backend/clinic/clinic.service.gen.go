@@ -102,6 +102,50 @@ func RegisterAssistant(instance Assistant, r *chi.Mux, log logrus.FieldLogger) {
 				}
 			}
 		})
+		r.Get("/AcceptAppointment", func(writer http.ResponseWriter, request *http.Request) {
+			// Reading argument aID
+			aIDStr := request.URL.Query().Get("aID")
+			aID, err := uuid.FromString(aIDStr)
+			if err != nil {
+				log.WithError(err).Error("can't parse uuid")
+				writer.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			// Calling function AcceptAppointment
+			{
+				responseCode, err := instance.AcceptAppointment(aID)
+				writer.WriteHeader(responseCode)
+				if err != nil {
+					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+						fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+						log.WithError(err).Error("Could not marshal response error")
+					}
+					return
+				}
+			}
+		})
+		r.Get("/RejectAppointment", func(writer http.ResponseWriter, request *http.Request) {
+			// Reading argument aID
+			aIDStr := request.URL.Query().Get("aID")
+			aID, err := uuid.FromString(aIDStr)
+			if err != nil {
+				log.WithError(err).Error("can't parse uuid")
+				writer.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			// Calling function RejectAppointment
+			{
+				responseCode, err := instance.RejectAppointment(aID)
+				writer.WriteHeader(responseCode)
+				if err != nil {
+					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+						fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+						log.WithError(err).Error("Could not marshal response error")
+					}
+					return
+				}
+			}
+		})
 		r.Post("/CreateAppointment", func(writer http.ResponseWriter, request *http.Request) {
 			// Reading argument a
 			rawBody, err := ioutil.ReadAll(request.Body)
@@ -268,6 +312,60 @@ func (serviceInstance *AssistantRestClient) MakePrescription(p *Prescription) (i
 		return -1, err
 	}
 	resp := serviceInstance.client.Post(u.String(), data)
+	if resp.Err != nil {
+		return -1, resp.Err
+	}
+
+	if len(resp.Body) > 0 {
+		respErr := map[string]interface{}{}
+		if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+			return resp.StatusCode, err
+		}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return resp.StatusCode, serviceInstance.wrapError(errorMessage)
+		}
+	}
+	return resp.StatusCode, nil
+}
+
+func (serviceInstance *AssistantRestClient) AcceptAppointment(aID uuid.UUID) (int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/AcceptAppointment")
+	if err != nil {
+		return -1, err
+	}
+	query := u.Query()
+	query.Set("aID", aID.String())
+
+	u.RawQuery = query.Encode()
+
+	resp := serviceInstance.client.Get(u.String())
+	if resp.Err != nil {
+		return -1, resp.Err
+	}
+
+	if len(resp.Body) > 0 {
+		respErr := map[string]interface{}{}
+		if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+			return resp.StatusCode, err
+		}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return resp.StatusCode, serviceInstance.wrapError(errorMessage)
+		}
+	}
+	return resp.StatusCode, nil
+}
+
+func (serviceInstance *AssistantRestClient) RejectAppointment(aID uuid.UUID) (int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/RejectAppointment")
+	if err != nil {
+		return -1, err
+	}
+	query := u.Query()
+	query.Set("aID", aID.String())
+
+	u.RawQuery = query.Encode()
+
+	resp := serviceInstance.client.Get(u.String())
 	if resp.Err != nil {
 		return -1, resp.Err
 	}

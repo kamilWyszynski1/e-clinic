@@ -12,15 +12,15 @@ import (
 
 // Appointment represents a row from 'public.appointment'.
 var (
-	AppointmentFields  = ` id, state, patient, specialist, scheduled_time, duration `
-	AppointmentColumns = []string{"id", "state", "patient", "specialist", "scheduled_time", "duration"}
+	AppointmentFields  = ` id, state, patient, specialist_fee, scheduled_time, duration `
+	AppointmentColumns = []string{"id", "state", "patient", "specialist_fee", "scheduled_time", "duration"}
 )
 
 type Appointment struct {
 	ID            uuid.UUID            `json:"id,omitempty"`             // id
 	State         Apoitntmentstateenum `json:"state,omitempty"`          // state
 	Patient       uuid.UUID            `json:"patient,omitempty"`        // patient
-	Specialist    uuid.UUID            `json:"specialist,omitempty"`     // specialist
+	SpecialistFee uuid.UUID            `json:"specialist_fee,omitempty"` // specialist_fee
 	ScheduledTime time.Time            `json:"scheduled_time,omitempty"` // scheduled_time
 	Duration      int                  `json:"duration,omitempty"`       // duration
 
@@ -59,14 +59,14 @@ func (a *Appointment) Insert(db XODB) error {
 
 	// sql insert query, primary key must be provided
 	const sqlstr = `INSERT INTO public.appointment (` +
-		`id, state, patient, specialist, scheduled_time, duration` +
+		`id, state, patient, specialist_fee, scheduled_time, duration` +
 		`) VALUES (` +
 		`$1, $2, $3, $4, $5, $6` +
 		`) RETURNING id`
 
 	// run query
-	XOLog(sqlstr, a.ID, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration)
-	err = db.QueryRow(sqlstr, a.ID, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration).Scan(&a.ID)
+	XOLog(sqlstr, a.ID, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration)
+	err = db.QueryRow(sqlstr, a.ID, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration).Scan(&a.ID)
 	if err != nil {
 		return err
 	}
@@ -93,14 +93,14 @@ func (a *Appointment) Update(db XODB) error {
 
 	// sql query
 	const sqlstr = `UPDATE public.appointment SET (` +
-		`state, patient, specialist, scheduled_time, duration` +
+		`state, patient, specialist_fee, scheduled_time, duration` +
 		`) = ( ` +
 		`$1, $2, $3, $4, $5` +
 		`) WHERE id = $6`
 
 	// run query
-	XOLog(sqlstr, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration, a.ID)
-	_, err = db.Exec(sqlstr, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration, a.ID)
+	XOLog(sqlstr, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration, a.ID)
+	_, err = db.Exec(sqlstr, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration, a.ID)
 	return err
 }
 
@@ -126,18 +126,18 @@ func (a *Appointment) Upsert(db XODB) error {
 
 	// sql query
 	const sqlstr = `INSERT INTO public.appointment (` +
-		`id, state, patient, specialist, scheduled_time, duration` +
+		`id, state, patient, specialist_fee, scheduled_time, duration` +
 		`) VALUES (` +
 		`$1, $2, $3, $4, $5, $6` +
 		`) ON CONFLICT (id) DO UPDATE SET (` +
-		`id, state, patient, specialist, scheduled_time, duration` +
+		`id, state, patient, specialist_fee, scheduled_time, duration` +
 		`) = (` +
-		`EXCLUDED.id, EXCLUDED.state, EXCLUDED.patient, EXCLUDED.specialist, EXCLUDED.scheduled_time, EXCLUDED.duration` +
+		`EXCLUDED.id, EXCLUDED.state, EXCLUDED.patient, EXCLUDED.specialist_fee, EXCLUDED.scheduled_time, EXCLUDED.duration` +
 		`)`
 
 	// run query
-	XOLog(sqlstr, a.ID, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration)
-	_, err = db.Exec(sqlstr, a.ID, a.State, a.Patient, a.Specialist, a.ScheduledTime, a.Duration)
+	XOLog(sqlstr, a.ID, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration)
+	_, err = db.Exec(sqlstr, a.ID, a.State, a.Patient, a.SpecialistFee, a.ScheduledTime, a.Duration)
 	if err != nil {
 		return err
 	}
@@ -187,12 +187,12 @@ func (a *Appointment) PatientByAppointmentPatientFkey(db XODB) (*Patient, error)
 
 }
 
-// SpecialistByAppointmentSpecialistFkey returns the Specialist associated with the Appointment's Specialist (specialist).
+// SpecialistFeeByAppointmentSpecialistFeeFkey returns the SpecialistFee associated with the Appointment's SpecialistFee (specialist_fee).
 //
-// Generated from foreign key 'appointment_specialist_fkey'.
-func (a *Appointment) SpecialistByAppointmentSpecialistFkey(db XODB) (*Specialist, error) {
+// Generated from foreign key 'appointment_specialist_fee_fkey'.
+func (a *Appointment) SpecialistFeeByAppointmentSpecialistFeeFkey(db XODB) (*SpecialistFee, error) {
 
-	return SpecialistByID(db, a.Specialist)
+	return SpecialistFeeByID(db, a.SpecialistFee)
 
 }
 
@@ -204,7 +204,7 @@ func AppointmentByID(db XODB, id uuid.UUID) (*Appointment, error) {
 
 	// sql query
 	const sqlstr = `SELECT ` +
-		`id, state, patient, specialist, scheduled_time, duration ` +
+		`id, state, patient, specialist_fee, scheduled_time, duration ` +
 		`FROM public.appointment ` +
 		`WHERE id = $1`
 
@@ -214,7 +214,7 @@ func AppointmentByID(db XODB, id uuid.UUID) (*Appointment, error) {
 		_exists: true,
 	}
 
-	err = db.QueryRow(sqlstr, id).Scan(&a.ID, &a.State, &a.Patient, &a.Specialist, &a.ScheduledTime, &a.Duration)
+	err = db.QueryRow(sqlstr, id).Scan(&a.ID, &a.State, &a.Patient, &a.SpecialistFee, &a.ScheduledTime, &a.Duration)
 	if err != nil {
 		return nil, err
 	}

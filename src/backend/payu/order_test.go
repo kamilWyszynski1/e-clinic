@@ -30,8 +30,9 @@ func TestClient_OrderCreateRequest(t *testing.T) {
 	mockResp := CreateOrderResponse{
 		Status:      StatusHolder{StatusCode: StatusSuccess},
 		RedirectURI: "redirURI",
-		OrderID:     "orderID",
-		ExtOrderID:  _extOrderID,
+		OrderInfo: OrderInfo{
+			OrderID:    "orderID",
+			ExtOrderID: _extOrderID},
 	}
 	b, err := json.Marshal(mockResp)
 	if err != nil {
@@ -99,4 +100,28 @@ func TestClient_OrderCreateRequestIntegration(t *testing.T) {
 	fmt.Println(err)
 	fmt.Println(resp)
 	fmt.Println(resp.OrderID)
+}
+
+func TestClient_OrderRetrieveRequest(t *testing.T) {
+	//t.Skip()
+	c, err := NewClient(
+		http.DefaultClient,
+		_baseURL,
+		MerchantConfig{
+			ClientID:     "398268",
+			ClientSecret: "880487191465ca9418fafcd9c0a019e6",
+			PosID:        "398268",
+		},
+	)
+	if err != nil {
+		t.Error(err)
+	}
+	if err := c.Authorize(); err != nil {
+		t.Fatal(err)
+	}
+	resp, err := c.OrderRetrieveRequest("HDHRSQ6Q3N201121GUEST000P01")
+	if err != nil {
+		t.Error(err)
+	}
+	fmt.Println(resp)
 }

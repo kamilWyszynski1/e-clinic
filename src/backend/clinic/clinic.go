@@ -13,6 +13,9 @@ type Assistant interface {
 	// GetAppointments returns appointments in given time range
 	GetFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error)
 	MakePrescription(p *Prescription) (int, error)
+	AcceptAppointment(aID uuid.UUID) (int, error)
+	RejectAppointment(aID uuid.UUID) (int, error)
+
 	// CreateAppointment checks if appointment is valid and schedules it
 	CreateAppointment(a *Appointment) (int, error)
 	GetAppointments(ar *AppointmentsRequest) (*AppointmentList, int, error)
@@ -62,10 +65,11 @@ type TimeRange struct {
 }
 
 type Appointment struct {
-	PatientID    uuid.UUID `json:"patient_id"`
-	SpecialistID uuid.UUID `json:"specialist_id"`
-	ScheduledAt  time.Time `json:"scheduled_at"`
-	Duration     Duration  `json:"duration"`
+	PatientID    uuid.UUID             `json:"patient_id"`
+	SpecialistID uuid.UUID             `json:"specialist_id"`
+	Speciality   models.Specialityenum `json:"speciality"`
+	ScheduledAt  time.Time             `json:"scheduled_at"`
+	Duration     Duration              `json:"duration"`
 
 	PatientComment  string   `json:"patient_comment"`
 	PatientSymptoms []string `json:"patient_symptoms"`
