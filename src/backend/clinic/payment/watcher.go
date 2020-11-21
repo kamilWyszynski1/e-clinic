@@ -157,7 +157,6 @@ func (w Watcher) handleAcceptedPayment(a *newPayment) error {
 		Description:  fmt.Sprintf("Payment for appointment: %s", a.AppointmentID),
 		CurrencyCode: payugo.CurrencyCodePLN,
 		TotalAmount:  strconv.Itoa(int(a.Price)),
-		ContinueURL:  "",
 		ExtOrderID:   a.AppointmentID.String(),
 		CustomerIP:   "127.0.0.1",
 		Buyer: payugo.Buyer{

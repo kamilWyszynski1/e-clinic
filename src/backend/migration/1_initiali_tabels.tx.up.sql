@@ -1,4 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- uuid provider
+CREATE EXTENSION pg_trgm;
 
 CREATE TYPE genderenum AS ENUM ('XX','FEMALE', 'MALE');
 
@@ -45,6 +46,7 @@ CREATE TYPE apoitntmentstateenum AS ENUM (
     'ACCEPTED', -- specialist accepted appointment
     'TO_BE_PAID', -- specialist accepted, waiting for patient to pay
     'OK', -- patient paid for appointment
+    'FINISHED', -- specialist made prescription
     'REJECTED', -- specialist rejected appointment
     'NOT_PAID' -- patient didn't pay in time
     );
@@ -88,10 +90,36 @@ CREATE TABLE payment
 (
     id          uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
     appointment uuid REFERENCES appointment (id) UNIQUE NOT NULL,
-    price       double precision                 NOT NULL,
-    order_id    VARCHAR                          UNIQUE NOT NULL,
-    status      VARCHAR                          NOT NULL,
+    price       double precision                        NOT NULL,
+    order_id    VARCHAR UNIQUE                          NOT NULL,
+    status      VARCHAR                                 NOT NULL,
 
     created_at  TIMESTAMP WITH TIME ZONE DEFAULT now(),
     updated_at  TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE drug
+(
+    id                  INT PRIMARY KEY,
+    name                VARCHAR NOT NULL,
+    type_of_preparation VARCHAR NOT NULL,
+    common_name         VARCHAR NOT NULL,
+    strength            VARCHAR NOT NULL, -- 4mg/5ml
+    shape               VARCHAR NOT NULL
+);
+
+CREATE INDEX lowered_name_inx ON drug USING gin (name gin_trgm_ops); -- like index
+
+CREATE TABLE substance
+(
+    id   uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR NOT NULL
+);
+
+
+CREATE TABLE composition
+(
+    id        uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    drug      INT REFERENCES drug (id)      NOT NULL,
+    substance uuid REFERENCES substance (id) NOT NULL
 );

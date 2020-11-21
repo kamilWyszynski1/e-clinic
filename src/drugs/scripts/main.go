@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	f, err := os.Open("drugs.xml")
+	f, err := os.Open("/home/kamil/go/src/e-clinic/src/drugs/scripts/drugs.xml")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -20,20 +20,15 @@ func main() {
 
 	byteValue, _ := ioutil.ReadAll(f)
 
-	var drugs drugs.ProduktyLecznicze
+	var d drugs.ProduktyLecznicze
 
-	if err := xml.Unmarshal(byteValue, &drugs); err != nil {
+	if err := xml.Unmarshal(byteValue, &d); err != nil {
 		panic(err)
 	}
+	//log := logrus.New()
 
-	//for _, p := range drugs.ProduktLeczniczy {
-	//	fmt.Printf("Drug: %s\n", p.NazwaProduktu)
-	//	for _, s := range p.SubstancjeCzynne.SubstancjaCzynna {
-	//		fmt.Printf("\tSubs: %s\n", s)
-	//	}
-	//	fmt.Println("#########3")
-	//}
-
+	//drugs.InsertToDb(db.Init(log), log, &d)
+	//return
 	// configForNeo4j35 := func(conf *neo4j.Config) {}
 	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
 
@@ -54,7 +49,7 @@ func main() {
 	defer session.Close()
 
 	count := 0
-	for _, p := range drugs.ProduktLeczniczy {
+	for _, p := range d.ProduktLeczniczy {
 		if len(p.SubstancjeCzynne.SubstancjaCzynna) == 0 {
 			continue
 		}
@@ -64,8 +59,9 @@ func main() {
 		if p.NazwaProduktu == "" || len(p.SubstancjeCzynne.SubstancjaCzynna) == 0 {
 			continue
 		}
-		_, err := session.Run("MERGE (d:Drug { name: $name }) ", map[string]interface{}{
+		_, err := session.Run("MERGE (d:Drug { name: $name, id: $id }) ", map[string]interface{}{
 			"name": p.NazwaProduktu,
+			"id":   p.ID,
 		})
 		if err != nil {
 			panic(err)
@@ -90,5 +86,4 @@ func main() {
 		}
 		count++
 	}
-
 }

@@ -14,7 +14,7 @@ const selectFeeBySpecialist = `SELECT id FROM specialist_fee WHERE specialist = 
 func (h Handler) CreateAppointment(a *clinic.Appointment) (*models.Appointment, int, error) {
 	log := h.log.WithField("method", "CreateAppointment")
 
-	if err := a.Invalidate(); err != nil {
+	if err := a.Invalidate(h.now()); err != nil {
 		log.WithError(err).Error("invalid appointment")
 		return nil, http.StatusBadRequest, err
 	}

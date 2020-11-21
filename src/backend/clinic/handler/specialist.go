@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/gocraft/dbr"
+
 	"github.com/sirupsen/logrus"
 
 	uuid "github.com/satori/go.uuid"
@@ -26,8 +28,9 @@ func (h Handler) GetFreeTime(id uuid.UUID, tr *clinic.TimeRange) (*clinic.TimeRa
 }
 
 const (
-	doesSpecialistMatchSQL = `SELECT specialist = ? FROM appointment WHERE id = ?`
-	finishAppointment      = `UPDATE appointment SET = 'OK' WHERE id = ?`
+	checkStateAndSpecialist = `SELECT sf.specialist = ? FROM specialist_fee sf
+JOIN appointment a on sf.id = a.specialist_fee
+WHERE a.state = 'OK' AND a.id = ? and a.scheduled_time + make_interval(0,0,0,0,0,0, duration) > now()`
 )
 
 func (h Handler) MakePrescription(p *clinic.Prescription) (int, error) {
@@ -38,11 +41,14 @@ func (h Handler) MakePrescription(p *clinic.Prescription) (int, error) {
 	}
 
 	var match bool
-	if err := h.db.SelectBySql(doesSpecialistMatchSQL, p.SpecialistID, p.AppointmentID).LoadOne(&match); err != nil {
+	if err := h.db.SelectBySql(checkStateAndSpecialist, p.SpecialistID, p.AppointmentID).LoadOne(&match); errors.Is(err, dbr.ErrNotFound) {
+		log.Debug("appointment does not match")
+		return http.StatusBadRequest, nil
+	} else if err != nil {
 		log.WithError(err).Error("failed to check if appointment match")
 		return http.StatusInternalServerError, nil
 	} else if !match {
-		return http.StatusBadRequest, errors.New("this specialist cannot make prescription for another appointment")
+		return http.StatusBadRequest, errors.New("specialist does not match with appointment")
 	}
 
 	res := models.AppointmentResult{
@@ -56,9 +62,9 @@ func (h Handler) MakePrescription(p *clinic.Prescription) (int, error) {
 		return http.StatusInternalServerError, nil
 	}
 
-	if _, err := h.db.UpdateBySql(finishAppointment, p.AppointmentID).Exec(); err != nil {
-		log.WithError(err).Error("failed to update appointment")
-		return http.StatusInternalServerError, nil
+	if err := ChangeAppointmentStatus(h.db, p.AppointmentID, models.ApoitntmentstateenumFinished); err != nil {
+		log.WithError(err).Error("failed to change appointment status")
+		return http.StatusInternalServerError, err
 	}
 	return http.StatusOK, nil
 }

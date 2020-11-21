@@ -19,6 +19,20 @@ type Assistant interface {
 	// CreateAppointment checks if appointment is valid and schedules it
 	CreateAppointment(a *Appointment) (*models.Appointment, int, error)
 	GetAppointments(ar *AppointmentsRequest) (*AppointmentList, int, error)
+
+	GetDrugs(prefix string, offset int, limit int) (*Drugs, int, error)
+	GetDrug(drugID int) (*DrugWithSubstances, int, error)
+	GetReplacement(drugID int, minSimilarity float64) (*Drugs, int, error)
+}
+
+type DrugWithSubstances struct {
+	Drug       *models.Drug        `json:"drug"`
+	Substances []*models.Substance `json:"substances"`
+}
+
+type Drugs struct {
+	Drugs []*models.Drug `json:"drugs"`
+	Len   int            `json:"len"`
 }
 
 type AppointmentList struct {
@@ -75,7 +89,7 @@ type Appointment struct {
 	PatientSymptoms []string `json:"patient_symptoms"`
 }
 
-func (a Appointment) Invalidate() error {
+func (a Appointment) Invalidate(now time.Time) error {
 	if a.PatientID == uuid.Nil {
 		return errors.New("patient uuid cannot be nil")
 	} else if a.SpecialistID == uuid.Nil {
@@ -84,6 +98,8 @@ func (a Appointment) Invalidate() error {
 		return errors.New("invalid scheduled time")
 	} else if a.Duration.Seconds() == 0. {
 		return errors.New("invalid duration")
+	} else if a.ScheduledAt.Before(now) {
+		return errors.New("appointment must be in future")
 	} else if a.PatientComment == "" {
 		return errors.New("patient comment cannot be empty")
 	} else if a.PatientSymptoms == nil || len(a.PatientSymptoms) == 0 {

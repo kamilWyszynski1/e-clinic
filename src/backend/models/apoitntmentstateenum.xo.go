@@ -24,6 +24,9 @@ const (
 	// ApoitntmentstateenumOk is the 'OK' Apoitntmentstateenum.
 	ApoitntmentstateenumOk = Apoitntmentstateenum("OK")
 
+	// ApoitntmentstateenumFinished is the 'FINISHED' Apoitntmentstateenum.
+	ApoitntmentstateenumFinished = Apoitntmentstateenum("FINISHED")
+
 	// ApoitntmentstateenumRejected is the 'REJECTED' Apoitntmentstateenum.
 	ApoitntmentstateenumRejected = Apoitntmentstateenum("REJECTED")
 
@@ -31,7 +34,7 @@ const (
 	ApoitntmentstateenumNotPaid = Apoitntmentstateenum("NOT_PAID")
 )
 
-var ApoitntmentstateenumValues = []Apoitntmentstateenum{ApoitntmentstateenumCreated, ApoitntmentstateenumAccepted, ApoitntmentstateenumToBePaid, ApoitntmentstateenumOk, ApoitntmentstateenumRejected, ApoitntmentstateenumNotPaid}
+var ApoitntmentstateenumValues = []Apoitntmentstateenum{ApoitntmentstateenumCreated, ApoitntmentstateenumAccepted, ApoitntmentstateenumToBePaid, ApoitntmentstateenumOk, ApoitntmentstateenumFinished, ApoitntmentstateenumRejected, ApoitntmentstateenumNotPaid}
 
 // String returns the string value of the Apoitntmentstateenum.
 func (a Apoitntmentstateenum) String() string {
@@ -57,6 +60,9 @@ func (a *Apoitntmentstateenum) UnmarshalText(text []byte) error {
 
 	case "OK":
 		*a = ApoitntmentstateenumOk
+
+	case "FINISHED":
+		*a = ApoitntmentstateenumFinished
 
 	case "REJECTED":
 		*a = ApoitntmentstateenumRejected

@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/neo4j/neo4j-go-driver/neo4j"
+
 	"github.com/go-chi/chi"
 	mailjet "github.com/mailjet/mailjet-apiv3-go"
 	"github.com/sirupsen/logrus"
@@ -22,7 +24,23 @@ func main() {
 	sess := db.Init(log)
 
 	r := chi.NewRouter()
-	cli := handler.NewHandler(sess, log)
+
+	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
+
+	driver, err := neo4j.NewDriver("bolt://localhost:7687", neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
+	if err != nil {
+		panic(err)
+	}
+
+	// For multidatabase support, set sessionConfig.DatabaseName to requested database
+	sessionConfig := neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite, DatabaseName: "neo4j"}
+	session, err := driver.NewSession(sessionConfig)
+	if err != nil {
+		panic(err)
+	}
+	//fmt.Println(session.Run("call gds.graph.create('drug', ['Drug', 'Sub'], '*')", nil))
+
+	cli := handler.NewHandler(sess, log, session)
 	clinic.RegisterAssistant(cli, r, log)
 
 	// PAYMENT
