@@ -7,6 +7,7 @@ require (
 	github.com/gocraft/dbr v0.0.0-20190714181702-8114670a83bd
 	github.com/hashicorp/go-retryablehttp v0.6.8
 	github.com/lib/pq v1.8.0
+	github.com/neo4j/neo4j-go-driver v1.8.3
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/sirupsen/logrus v1.7.0

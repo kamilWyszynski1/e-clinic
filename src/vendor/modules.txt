@@ -16,6 +16,16 @@ github.com/hashicorp/go-retryablehttp
 github.com/lib/pq
 github.com/lib/pq/oid
 github.com/lib/pq/scram
+# github.com/neo4j/neo4j-go-driver v1.8.3
+## explicit
+github.com/neo4j/neo4j-go-driver/neo4j
+github.com/neo4j/neo4j-go-driver/neo4j/internal/bolt
+github.com/neo4j/neo4j-go-driver/neo4j/internal/db
+github.com/neo4j/neo4j-go-driver/neo4j/internal/log
+github.com/neo4j/neo4j-go-driver/neo4j/internal/packstream
+github.com/neo4j/neo4j-go-driver/neo4j/internal/pool
+github.com/neo4j/neo4j-go-driver/neo4j/internal/router
+github.com/neo4j/neo4j-go-driver/neo4j/internal/types
 # github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e
 ## explicit
 # github.com/satori/go.uuid v1.2.0
