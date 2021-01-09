@@ -10,24 +10,58 @@ import (
 )
 
 type Assistant interface {
-	// GetAppointments returns appointments in given time range
-	GetFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error)
+	// GetSpecialistFreeTime returns specialist's free time
+	GetSpecialistFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error)
+	// MakePrescription creates prescription
 	MakePrescription(p *Prescription) (int, error)
+	// AcceptAppointment specialist accepts appointment
 	AcceptAppointment(aID uuid.UUID) (int, error)
+	// RejectAppointment specialist rejects appointment
 	RejectAppointment(aID uuid.UUID) (int, error)
 
 	// CreateAppointment checks if appointment is valid and schedules it
 	CreateAppointment(a *Appointment) (*models.Appointment, int, error)
+	// GetAppointments returns user's appointments in given time range
 	GetAppointments(ar *AppointmentsRequest) (*AppointmentList, int, error)
+	// GetAppointment returns appointment details
+	GetAppointment(aID uuid.UUID) (*AppointmentInfo, int, error)
+	// GetSpecialists returns specialists
+	GetSpecialists() (*SpecialistList, int, error)
 
+	// GetDrugs returns drug list with pagination
 	GetDrugs(prefix string, offset int, limit int) (*Drugs, int, error)
+	// GetDrug returns drug's info
 	GetDrug(drugID int) (*DrugWithSubstances, int, error)
+	// GetReplacement returns drug's replacements
 	GetReplacement(drugID int, minSimilarity float64) (*Drugs, int, error)
+}
+
+type SpecialistList struct {
+	Specialists []SpecialistWithFee `json:"specialists"`
+}
+
+type SpecialistWithFee struct {
+	SpecialistID uuid.UUID             `json:"specialist_id,omitempty"` // id
+	FeeId        uuid.UUID             `json:"fee_id"`
+	Name         string                `json:"name,omitempty"`    // name
+	Surname      string                `json:"surname,omitempty"` // surname
+	Speciality   models.Specialityenum `json:"speciality"`
+	FeePer30Min  float64               `json:"fee_per_30_min"`
+}
+
+type AppointmentInfo struct {
+	Appointment  *models.Appointment     `json:"appointment"`
+	Form         *models.AppointmentForm `json:"form"`
+	Prescription *Prescription           `json:"prescription"`
 }
 
 type DrugWithSubstances struct {
 	Drug       *models.Drug        `json:"drug"`
 	Substances []*models.Substance `json:"substances"`
+}
+
+type Substance struct {
+	Name string `json:"name,omitempty"` // name
 }
 
 type Drugs struct {
@@ -36,21 +70,26 @@ type Drugs struct {
 }
 
 type AppointmentList struct {
-	Appointments []models.Appointment `json:"appointments"`
-	Len          int                  `json:"len"`
+	Appointments []*AppointmentInfo `json:"appointments"`
+	Len          int                `json:"len"`
 }
 
 type Prescription struct {
-	AppointmentID uuid.UUID `json:"appointment_id"`
-	SpecialistID  uuid.UUID `json:"specialist_id"`
-	Comment       string    `json:"comment"`
-	Prescription  string    `json:"prescription"` // listed drugs
+	AppointmentID uuid.UUID  `json:"appointment_id,omitempty"`
+	SpecialistID  uuid.UUID  `json:"specialist_id,omitempty"`
+	Comment       string     `json:"comment"`
+	Drugs         []DrugDose `json:"drugs"`
+}
+
+type DrugDose struct {
+	Drug   int    `json:"drug"` // listed drugs
+	Dosing string `json:"dosing"`
 }
 
 func (p Prescription) Invalidate() error {
 	if p.Comment == "" {
 		return errors.New("comment cannot be empty")
-	} else if p.Prescription == "" {
+	} else if len(p.Drugs) == 0 {
 		return errors.New("prescription cannot be empty")
 	}
 	return nil
@@ -89,7 +128,7 @@ type Appointment struct {
 	PatientSymptoms []string `json:"patient_symptoms"`
 }
 
-func (a Appointment) Invalidate(now time.Time) error {
+func (a Appointment) Validate(now time.Time) error {
 	if a.PatientID == uuid.Nil {
 		return errors.New("patient uuid cannot be nil")
 	} else if a.SpecialistID == uuid.Nil {

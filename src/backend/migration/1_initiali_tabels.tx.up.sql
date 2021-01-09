@@ -1,5 +1,5 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; -- uuid provider
-CREATE EXTENSION pg_trgm;
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
 CREATE TYPE genderenum AS ENUM ('XX','FEMALE', 'MALE');
 
@@ -77,13 +77,22 @@ CREATE TABLE appointment_form
 
 CREATE TABLE appointment_result
 (
-    id           uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
-    appointment  uuid REFERENCES appointment (id) NOT NULL,
-    comment      VARCHAR                          NOT NULL,
-    prescription VARCHAR                          NOT NULL,
+    id          uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
+    appointment uuid REFERENCES appointment (id) NOT NULL,
+    comment     VARCHAR                          NOT NULL,
 
-    created_at   TIMESTAMP WITH TIME ZONE DEFAULT now(),
-    updated_at   TIMESTAMP WITH TIME ZONE
+    created_at  TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    updated_at  TIMESTAMP WITH TIME ZONE
+);
+
+CREATE TABLE appointment_result_prescription
+(
+    id                 uuid PRIMARY KEY         DEFAULT uuid_generate_v4(),
+    appointment_result uuid REFERENCES appointment_result (id) NOT NULL,
+    drug               INT REFERENCES drug (id)                NOT NULL,
+    dosing             VARCHAR                                 NOT NULL,
+
+    created_at         TIMESTAMP WITH TIME ZONE DEFAULT now()
 );
 
 CREATE TABLE payment
@@ -120,6 +129,6 @@ CREATE TABLE substance
 CREATE TABLE composition
 (
     id        uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
-    drug      INT REFERENCES drug (id)      NOT NULL,
+    drug      INT REFERENCES drug (id)       NOT NULL,
     substance uuid REFERENCES substance (id) NOT NULL
 );

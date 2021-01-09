@@ -10,10 +10,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/neo4j/neo4j-go-driver/neo4j"
-
 	"github.com/go-chi/chi"
+	"github.com/go-chi/cors"
 	mailjet "github.com/mailjet/mailjet-apiv3-go"
+	"github.com/neo4j/neo4j-go-driver/neo4j"
 	"github.com/sirupsen/logrus"
 )
 
@@ -24,6 +24,9 @@ func main() {
 	sess := db.Init(log)
 
 	r := chi.NewRouter()
+	r.Use(cors.Handler(cors.Options{
+		AllowedOrigins: []string{"*"},
+	}))
 
 	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
 
@@ -66,7 +69,7 @@ func main() {
 	).Start()
 
 	log.Info("running")
-	if err := http.ListenAndServe(":8080", r); err != nil {
+	if err := http.ListenAndServe(":8081", r); err != nil {
 		panic(err)
 	}
 }

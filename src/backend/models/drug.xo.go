@@ -200,3 +200,42 @@ func DrugByID(db XODB, id int) (*Drug, error) {
 
 	return &d, nil
 }
+
+// DrugsByLoweredNameInx retrieves a row from 'public.drug' as a Drug.
+//
+// Generated from index 'lowered_name_inx'.
+func DrugsByLoweredNameInx(db XODB, name string) ([]*Drug, error) {
+	var err error
+
+	// sql query
+	const sqlstr = `SELECT ` +
+		`id, name, type_of_preparation, common_name, strength, shape ` +
+		`FROM public.drug ` +
+		`WHERE name = $1`
+
+	// run query
+	XOLog(sqlstr, name)
+	q, err := db.Query(sqlstr, name)
+	if err != nil {
+		return nil, err
+	}
+	defer q.Close()
+
+	// load results
+	res := []*Drug{}
+	for q.Next() {
+		d := Drug{
+			_exists: true,
+		}
+
+		// scan
+		err = q.Scan(&d.ID, &d.Name, &d.TypeOfPreparation, &d.CommonName, &d.Strength, &d.Shape)
+		if err != nil {
+			return nil, err
+		}
+
+		res = append(res, &d)
+	}
+
+	return res, nil
+}

@@ -11,15 +11,14 @@ import (
 
 // AppointmentResult represents a row from 'public.appointment_result'.
 var (
-	AppointmentResultFields  = ` id, appointment, comment, prescription `
-	AppointmentResultColumns = []string{"id", "appointment", "comment", "prescription"}
+	AppointmentResultFields  = ` id, appointment, comment `
+	AppointmentResultColumns = []string{"id", "appointment", "comment"}
 )
 
 type AppointmentResult struct {
-	ID           uuid.UUID `json:"id,omitempty"`           // id
-	Appointment  uuid.UUID `json:"appointment,omitempty"`  // appointment
-	Comment      string    `json:"comment,omitempty"`      // comment
-	Prescription string    `json:"prescription,omitempty"` // prescription
+	ID          uuid.UUID `json:"id,omitempty"`          // id
+	Appointment uuid.UUID `json:"appointment,omitempty"` // appointment
+	Comment     string    `json:"comment,omitempty"`     // comment
 
 	// xo fields
 	_exists, _deleted bool
@@ -56,14 +55,14 @@ func (ar *AppointmentResult) Insert(db XODB) error {
 
 	// sql insert query, primary key must be provided
 	const sqlstr = `INSERT INTO public.appointment_result (` +
-		`id, appointment, comment, prescription` +
+		`id, appointment, comment` +
 		`) VALUES (` +
-		`$1, $2, $3, $4` +
+		`$1, $2, $3` +
 		`) RETURNING id`
 
 	// run query
-	XOLog(sqlstr, ar.ID, ar.Appointment, ar.Comment, ar.Prescription)
-	err = db.QueryRow(sqlstr, ar.ID, ar.Appointment, ar.Comment, ar.Prescription).Scan(&ar.ID)
+	XOLog(sqlstr, ar.ID, ar.Appointment, ar.Comment)
+	err = db.QueryRow(sqlstr, ar.ID, ar.Appointment, ar.Comment).Scan(&ar.ID)
 	if err != nil {
 		return err
 	}
@@ -90,14 +89,14 @@ func (ar *AppointmentResult) Update(db XODB) error {
 
 	// sql query
 	const sqlstr = `UPDATE public.appointment_result SET (` +
-		`appointment, comment, prescription` +
+		`appointment, comment` +
 		`) = ( ` +
-		`$1, $2, $3` +
-		`) WHERE id = $4`
+		`$1, $2` +
+		`) WHERE id = $3`
 
 	// run query
-	XOLog(sqlstr, ar.Appointment, ar.Comment, ar.Prescription, ar.ID)
-	_, err = db.Exec(sqlstr, ar.Appointment, ar.Comment, ar.Prescription, ar.ID)
+	XOLog(sqlstr, ar.Appointment, ar.Comment, ar.ID)
+	_, err = db.Exec(sqlstr, ar.Appointment, ar.Comment, ar.ID)
 	return err
 }
 
@@ -123,18 +122,18 @@ func (ar *AppointmentResult) Upsert(db XODB) error {
 
 	// sql query
 	const sqlstr = `INSERT INTO public.appointment_result (` +
-		`id, appointment, comment, prescription` +
+		`id, appointment, comment` +
 		`) VALUES (` +
-		`$1, $2, $3, $4` +
+		`$1, $2, $3` +
 		`) ON CONFLICT (id) DO UPDATE SET (` +
-		`id, appointment, comment, prescription` +
+		`id, appointment, comment` +
 		`) = (` +
-		`EXCLUDED.id, EXCLUDED.appointment, EXCLUDED.comment, EXCLUDED.prescription` +
+		`EXCLUDED.id, EXCLUDED.appointment, EXCLUDED.comment` +
 		`)`
 
 	// run query
-	XOLog(sqlstr, ar.ID, ar.Appointment, ar.Comment, ar.Prescription)
-	_, err = db.Exec(sqlstr, ar.ID, ar.Appointment, ar.Comment, ar.Prescription)
+	XOLog(sqlstr, ar.ID, ar.Appointment, ar.Comment)
+	_, err = db.Exec(sqlstr, ar.ID, ar.Appointment, ar.Comment)
 	if err != nil {
 		return err
 	}
@@ -192,7 +191,7 @@ func AppointmentResultByID(db XODB, id uuid.UUID) (*AppointmentResult, error) {
 
 	// sql query
 	const sqlstr = `SELECT ` +
-		`id, appointment, comment, prescription ` +
+		`id, appointment, comment ` +
 		`FROM public.appointment_result ` +
 		`WHERE id = $1`
 
@@ -202,7 +201,7 @@ func AppointmentResultByID(db XODB, id uuid.UUID) (*AppointmentResult, error) {
 		_exists: true,
 	}
 
-	err = db.QueryRow(sqlstr, id).Scan(&ar.ID, &ar.Appointment, &ar.Comment, &ar.Prescription)
+	err = db.QueryRow(sqlstr, id).Scan(&ar.ID, &ar.Appointment, &ar.Comment)
 	if err != nil {
 		return nil, err
 	}

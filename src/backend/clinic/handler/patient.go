@@ -14,12 +14,12 @@ const selectFeeBySpecialist = `SELECT id FROM specialist_fee WHERE specialist = 
 func (h Handler) CreateAppointment(a *clinic.Appointment) (*models.Appointment, int, error) {
 	log := h.log.WithField("method", "CreateAppointment")
 
-	if err := a.Invalidate(h.now()); err != nil {
+	if err := a.Validate(h.now()); err != nil {
 		log.WithError(err).Error("invalid appointment")
 		return nil, http.StatusBadRequest, err
 	}
 
-	tr, _, err := h.GetFreeTime(a.SpecialistID, &clinic.TimeRange{
+	tr, _, err := h.GetSpecialistFreeTime(a.SpecialistID, &clinic.TimeRange{
 		From: a.ScheduledAt,
 		To:   a.ScheduledAt.Add(a.Duration.Duration),
 	})
@@ -36,9 +36,9 @@ func (h Handler) CreateAppointment(a *clinic.Appointment) (*models.Appointment, 
 	return nil, http.StatusBadRequest, errors.New("specialist is not available then")
 
 Insert:
-
 	var specialistFeeID uuid.UUID
-	if err := h.db.SelectBySql(selectFeeBySpecialist, a.SpecialistID, a.Speciality).LoadOne(&specialistFeeID); err != nil {
+	err = h.db.SelectBySql(selectFeeBySpecialist, a.SpecialistID, a.Speciality).LoadOne(&specialistFeeID)
+	if err != nil {
 		log.WithError(err).Error("failed to query specialist fee")
 		return nil, http.StatusBadRequest, err
 	}

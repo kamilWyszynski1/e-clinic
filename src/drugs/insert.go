@@ -20,7 +20,7 @@ func InsertToDb(db *dbr.Session, log logrus.FieldLogger, drugs *ProduktyLecznicz
 			ID:                id,
 			Name:              drug.NazwaProduktu,
 			TypeOfPreparation: drug.RodzajPreparatu,
-			CommonName:        drug.NazwaPowszechnieStosowana,
+			CommonName:        drug.NPS,
 			Strength:          drug.Moc,
 			Shape:             drug.Postac,
 		}

@@ -14,7 +14,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-func (h Handler) GetFreeTime(id uuid.UUID, tr *clinic.TimeRange) (*clinic.TimeRanges, int, error) {
+func (h Handler) GetSpecialistFreeTime(id uuid.UUID, tr *clinic.TimeRange) (*clinic.TimeRanges, int, error) {
 	return &clinic.TimeRanges{Ranges: []clinic.TimeRange{
 		{
 			From: time.Now().Add(-time.Hour * 4),
@@ -52,14 +52,26 @@ func (h Handler) MakePrescription(p *clinic.Prescription) (int, error) {
 	}
 
 	res := models.AppointmentResult{
-		ID:           uuid.NewV4(),
-		Appointment:  p.AppointmentID,
-		Comment:      p.Comment,
-		Prescription: p.Prescription,
+		ID:          uuid.NewV4(),
+		Appointment: p.AppointmentID,
+		Comment:     p.Comment,
 	}
 	if err := res.Insert(h.db); err != nil {
 		log.WithError(err).Error("failed to insert appointment result")
 		return http.StatusInternalServerError, nil
+	}
+
+	for _, d := range p.Drugs {
+		arp := models.AppointmentResultPrescription{
+			ID:                uuid.NewV4(),
+			Drug:              d.Drug,
+			Dosing:            d.Dosing,
+			AppointmentResult: res.ID,
+		}
+		if err := arp.Insert(h.db); err != nil {
+			log.WithError(err).Error("failed to insert appointment result")
+			return http.StatusInternalServerError, nil
+		}
 	}
 
 	if err := ChangeAppointmentStatus(h.db, p.AppointmentID, models.ApoitntmentstateenumFinished); err != nil {

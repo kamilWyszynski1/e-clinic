@@ -4,6 +4,7 @@ go 1.14
 
 require (
 	github.com/go-chi/chi v1.5.0
+	github.com/go-chi/cors v1.1.1
 	github.com/gocraft/dbr v0.0.0-20190714181702-8114670a83bd
 	github.com/hashicorp/go-retryablehttp v0.6.8
 	github.com/jarcoal/httpmock v1.0.6

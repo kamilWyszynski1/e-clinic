@@ -19,17 +19,10 @@ func main() {
 	defer f.Close()
 
 	byteValue, _ := ioutil.ReadAll(f)
-
 	var d drugs.ProduktyLecznicze
-
 	if err := xml.Unmarshal(byteValue, &d); err != nil {
 		panic(err)
 	}
-	//log := logrus.New()
-
-	//drugs.InsertToDb(db.Init(log), log, &d)
-	//return
-	// configForNeo4j35 := func(conf *neo4j.Config) {}
 	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
 
 	driver, err := neo4j.NewDriver("bolt://localhost:7687", neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
@@ -44,7 +37,7 @@ func main() {
 	sessionConfig := neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite}
 	session, err := driver.NewSession(sessionConfig)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	defer session.Close()
 
@@ -59,28 +52,41 @@ func main() {
 		if p.NazwaProduktu == "" || len(p.SubstancjeCzynne.SubstancjaCzynna) == 0 {
 			continue
 		}
-		_, err := session.Run("MERGE (d:Drug { name: $name, id: $id }) ", map[string]interface{}{
-			"name": p.NazwaProduktu,
-			"id":   p.ID,
-		})
+		_, err := session.Run(`MERGE (l:Lek { 
+				nazwa: $name, 
+				id: $id, 
+				typ: $type, 
+				nazwa_powszechna: $common_name,
+				moc: $strength,
+				postac: $shape}) `,
+			map[string]interface{}{
+				"name":        p.NazwaProduktu,
+				"id":          p.ID,
+				"type":        p.RodzajPreparatu,
+				"common_name": p.NPS,
+				"strength":    p.Moc,
+				"shape":       p.Postac,
+			})
 		if err != nil {
 			panic(err)
 		}
 
 		for _, s := range p.SubstancjeCzynne.SubstancjaCzynna {
-			_, err := session.Run("MERGE (s:Sub { name: $sub })", map[string]interface{}{
+			_, err := session.Run("MERGE (s:Sub { nazwa: $sub })", map[string]interface{}{
 				"sub": strings.Trim(s, " "),
 			})
 			if err != nil {
 				panic(err)
 			}
 
-			_, err = session.Run("MATCH (s:Sub), (d:Drug) WHERE s.name = $sub AND d.name = $name MERGE (s) <- [:HAS] - (d)", map[string]interface{}{
-				"name": p.NazwaProduktu,
-				"sub":  strings.Trim(s, " "),
-			})
+			_, err = session.Run(
+				"MATCH (s:Sub), (l:Lek) WHERE s.nazwa = $sub AND l.nazwa = $name MERGE (s) <- [:POSIADA] - (l)",
+				map[string]interface{}{
+					"name": p.NazwaProduktu,
+					"sub":  strings.Trim(s, " "),
+				})
 			if err != nil {
-				panic(err)
+				log.Fatal(err)
 			}
 
 		}

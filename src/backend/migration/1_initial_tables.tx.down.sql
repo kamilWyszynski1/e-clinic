@@ -5,6 +5,7 @@ DROP TABLE appointment;
 DROP TABLE specialist_fee;
 DROP TABLE specialist;
 DROP TABLE patient;
+DROP TABLE appointment_result_prescription;
 
 DROP TYPE genderenum;
 DROP TYPE apoitntmentstateenum;

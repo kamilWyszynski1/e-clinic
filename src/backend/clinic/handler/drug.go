@@ -13,8 +13,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-const queryDrugs = `SELECT * FROM drug
+const queryDrugs = `select d.* from drug d
+join composition c on d.id = c.drug
 WHERE lower(name) like %s
+group by d.id
+order by count(*)  desc
 OFFSET ? LIMIT ?`
 
 func (h Handler) GetDrugs(prefix string, offset int, limit int) (*clinic.Drugs, int, error) {
@@ -40,7 +43,7 @@ func (h Handler) GetDrugs(prefix string, offset int, limit int) (*clinic.Drugs, 
 	}, http.StatusOK, nil
 }
 
-const querySubstances = `select s.name from substance s
+const querySubstances = `select s.* from substance s
 join composition c on s.id = c.substance
 join drug d on c.drug = d.id
 where d.id = ?`
@@ -82,8 +85,10 @@ func (h Handler) GetReplacement(drugID int, minSimilarity float64) (*clinic.Drug
 		log.WithError(err).Error("failed to run cypher query")
 		return nil, http.StatusInternalServerError, nil
 	}
-	fmt.Printf("%+v\n", res)
-	fmt.Printf("%+v\n", res.Record())
+
+	f := func(i interface{}, _ bool) string {
+		return i.(string)
+	}
 
 	drugs := make([]*models.Drug, 0)
 	for res.Next() {
@@ -93,10 +98,13 @@ func (h Handler) GetReplacement(drugID int, minSimilarity float64) (*clinic.Drug
 			log.WithError(err).Error("failed to parse id")
 			return nil, http.StatusInternalServerError, nil
 		}
-		d, err := models.DrugByID(h.db, id)
-		if err != nil {
-			log.WithError(err).Error("failed to query drug")
-			return nil, http.StatusInternalServerError, nil
+		d := &models.Drug{
+			ID:                id,
+			Name:              f(res.Record().Get("nazwa")),
+			TypeOfPreparation: f(res.Record().Get("typ")),
+			CommonName:        f(res.Record().Get("nazwa_powszechna")),
+			Strength:          f(res.Record().Get("moc")),
+			Shape:             f(res.Record().Get("postac")),
 		}
 		drugs = append(drugs, d)
 	}

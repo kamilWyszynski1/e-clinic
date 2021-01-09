@@ -21,6 +21,7 @@ WHERE specialist = ? AND scheduled_time BETWEEN ? AND ?`
 
 func (h Handler) GetAppointments(r *clinic.AppointmentsRequest) (*clinic.AppointmentList, int, error) {
 	log := h.log.WithField("method", "GetAppointments")
+	log.Info("call")
 
 	var appointments []models.Appointment
 	switch r.UserType {
@@ -43,9 +44,18 @@ func (h Handler) GetAppointments(r *clinic.AppointmentsRequest) (*clinic.Appoint
 	if len(appointments) == 0 {
 		return nil, http.StatusNoContent, nil
 	}
+	aInfos := make([]*clinic.AppointmentInfo, 0)
+	for _, a := range appointments {
+		i, _, err := h.GetAppointment(a.ID)
+		if err != nil {
+			return nil, http.StatusInternalServerError, err
+		}
+		aInfos = append(aInfos, i)
+
+	}
 	return &clinic.AppointmentList{
-		Appointments: appointments,
-		Len:          len(appointments),
+		Appointments: aInfos,
+		Len:          len(aInfos),
 	}, http.StatusOK, nil
 }
 
@@ -94,4 +104,89 @@ var transitions = map[models.Apoitntmentstateenum][]models.Apoitntmentstateenum{
 	models.ApoitntmentstateenumOk: {
 		models.ApoitntmentstateenumFinished,
 	},
+}
+
+const (
+	appointmentFormByAppointmentID   = `select comment, symptoms from appointment_form where appointment = ?`
+	appointmentResultByAppointmentID = `select comment from appointment_result where appointment = ?`
+	drugDosingByAppointmentID        = `select * from appointment_result_prescription arp
+join appointment_result ar on arp.appointment_result = ar.id
+where ar.appointment = ?`
+)
+
+func (h Handler) GetAppointment(aID uuid.UUID) (*clinic.AppointmentInfo, int, error) {
+	log := h.log.WithField("method", "GetAppointment")
+	a, err := models.AppointmentByID(h.db, aID)
+	if err != nil {
+		log.WithError(err).Error("failed to query appointment")
+		return nil, http.StatusInternalServerError, err
+	}
+
+	var form *models.AppointmentForm
+	err = h.db.SelectBySql(appointmentFormByAppointmentID, aID).LoadOne(&form)
+	if err != nil && !errors.Is(err, dbr.ErrNotFound) {
+		log.WithError(err).Error("failed to query form")
+		return nil, http.StatusInternalServerError, err
+	}
+
+	var specialistComment string
+	err = h.db.SelectBySql(appointmentResultByAppointmentID, aID).LoadOne(&specialistComment)
+	if err != nil && !errors.Is(err, dbr.ErrNotFound) {
+		log.WithError(err).Error("failed to query form")
+		return nil, http.StatusInternalServerError, err
+	}
+
+	var drugs []clinic.DrugDose
+	err = h.db.SelectBySql(drugDosingByAppointmentID, aID).LoadOne(&drugs)
+	if err != nil && !errors.Is(err, dbr.ErrNotFound) {
+		log.WithError(err).Error("failed to query form")
+		return nil, http.StatusInternalServerError, err
+	}
+
+	return &clinic.AppointmentInfo{
+		Appointment: a,
+		Form:        form,
+		Prescription: &clinic.Prescription{
+			Comment: specialistComment,
+			Drugs:   drugs,
+		},
+	}, http.StatusOK, nil
+}
+
+const (
+	getSpecialists    = `SELECT id, name, surname FROM specialist`
+	getSpecialistFees = `SELECT * FROM specialist_fee WHERE specialist = ?`
+)
+
+func (h Handler) GetSpecialists() (*clinic.SpecialistList, int, error) {
+	log := h.log.WithField("method", "GetSpecialists")
+
+	var specialists []models.Specialist
+	_, err := h.db.SelectBySql(getSpecialists).Load(&specialists)
+	if err != nil && !errors.Is(err, dbr.ErrNotFound) {
+		log.WithError(err).Error("failed to query specialists")
+		return nil, http.StatusInternalServerError, err
+	}
+
+	list := make([]clinic.SpecialistWithFee, 0)
+
+	for _, s := range specialists {
+		var fees []models.SpecialistFee
+		_, err := h.db.SelectBySql(getSpecialistFees, s.ID).Load(&fees)
+		if err != nil && !errors.Is(err, dbr.ErrNotFound) {
+			log.WithError(err).Error("failed to query specialists")
+			return nil, http.StatusInternalServerError, err
+		}
+		for _, f := range fees {
+			list = append(list, clinic.SpecialistWithFee{
+				SpecialistID: s.ID,
+				FeeId:        f.ID,
+				Name:         s.Name,
+				Surname:      s.Surname,
+				Speciality:   f.Speciality,
+				FeePer30Min:  f.FeePer30Min,
+			})
+		}
+	}
+	return &clinic.SpecialistList{Specialists: list}, http.StatusOK, nil
 }

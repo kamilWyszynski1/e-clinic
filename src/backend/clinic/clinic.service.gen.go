@@ -23,7 +23,7 @@ const AssistantRoutePattern = "/api/v1/Assistant"
 
 func RegisterAssistant(instance Assistant, r *chi.Mux, log logrus.FieldLogger) {
 	r.Route("/api/v1/Assistant", func(r chi.Router) {
-		r.Post("/GetFreeTime", func(writer http.ResponseWriter, request *http.Request) {
+		r.Post("/GetSpecialistFreeTime", func(writer http.ResponseWriter, request *http.Request) {
 			// Reading argument id
 			idStr := request.URL.Query().Get("id")
 			id, err := uuid.FromString(idStr)
@@ -49,9 +49,9 @@ func RegisterAssistant(instance Assistant, r *chi.Mux, log logrus.FieldLogger) {
 				}
 			}
 
-			// Calling function GetFreeTime
+			// Calling function GetSpecialistFreeTime
 			{
-				response, responseCode, err := instance.GetFreeTime(id, timeRange)
+				response, responseCode, err := instance.GetSpecialistFreeTime(id, timeRange)
 				writer.WriteHeader(responseCode)
 				if err != nil {
 					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
@@ -211,6 +211,64 @@ func RegisterAssistant(instance Assistant, r *chi.Mux, log logrus.FieldLogger) {
 			// Calling function GetAppointments
 			{
 				response, responseCode, err := instance.GetAppointments(ar)
+				writer.WriteHeader(responseCode)
+				if err != nil {
+					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+						fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+						log.WithError(err).Error("Could not marshal response error")
+					}
+					return
+				}
+				if response != nil {
+					if err := json.NewEncoder(writer).Encode(response); err != nil {
+						log.WithError(err).Error("Could not write response")
+						writer.WriteHeader(http.StatusInternalServerError)
+						if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+							fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+							log.WithError(err).Error("Could not marshal response error")
+						}
+						return
+					}
+				}
+			}
+		})
+		r.Get("/GetAppointment", func(writer http.ResponseWriter, request *http.Request) {
+			// Reading argument aID
+			aIDStr := request.URL.Query().Get("aID")
+			aID, err := uuid.FromString(aIDStr)
+			if err != nil {
+				log.WithError(err).Error("can't parse uuid")
+				writer.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			// Calling function GetAppointment
+			{
+				response, responseCode, err := instance.GetAppointment(aID)
+				writer.WriteHeader(responseCode)
+				if err != nil {
+					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+						fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+						log.WithError(err).Error("Could not marshal response error")
+					}
+					return
+				}
+				if response != nil {
+					if err := json.NewEncoder(writer).Encode(response); err != nil {
+						log.WithError(err).Error("Could not write response")
+						writer.WriteHeader(http.StatusInternalServerError)
+						if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+							fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+							log.WithError(err).Error("Could not marshal response error")
+						}
+						return
+					}
+				}
+			}
+		})
+		r.Get("/GetSpecialists", func(writer http.ResponseWriter, request *http.Request) {
+			// Calling function GetSpecialists
+			{
+				response, responseCode, err := instance.GetSpecialists()
 				writer.WriteHeader(responseCode)
 				if err != nil {
 					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
@@ -399,8 +457,8 @@ func (serviceInstance *AssistantRestClient) wrapError(errMsg interface{}) error 
 	return fmt.Errorf("%v", errMsg)
 }
 
-func (serviceInstance *AssistantRestClient) GetFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error) {
-	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/GetFreeTime")
+func (serviceInstance *AssistantRestClient) GetSpecialistFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/GetSpecialistFreeTime")
 	if err != nil {
 		return nil, -1, err
 	}
@@ -575,6 +633,68 @@ func (serviceInstance *AssistantRestClient) GetAppointments(ar *AppointmentsRequ
 		}
 	}
 	respJson := &AppointmentList{}
+	if len(resp.Body) > 0 {
+		if err := json.Unmarshal(resp.Body, respJson); err != nil {
+			return nil, resp.StatusCode, err
+		}
+	}
+	return respJson, resp.StatusCode, nil
+}
+
+func (serviceInstance *AssistantRestClient) GetAppointment(aID uuid.UUID) (*AppointmentInfo, int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/GetAppointment")
+	if err != nil {
+		return nil, -1, err
+	}
+	query := u.Query()
+	query.Set("aID", aID.String())
+
+	u.RawQuery = query.Encode()
+
+	resp := serviceInstance.client.Get(u.String())
+	if resp.Err != nil {
+		return nil, -1, resp.Err
+	}
+
+	if len(resp.Body) > 0 {
+		respErr := map[string]interface{}{}
+		if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return nil, resp.StatusCode, serviceInstance.wrapError(errorMessage)
+		}
+	}
+	respJson := &AppointmentInfo{}
+	if len(resp.Body) > 0 {
+		if err := json.Unmarshal(resp.Body, respJson); err != nil {
+			return nil, resp.StatusCode, err
+		}
+	}
+	return respJson, resp.StatusCode, nil
+}
+
+func (serviceInstance *AssistantRestClient) GetSpecialists() (*SpecialistList, int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/GetSpecialists")
+	if err != nil {
+		return nil, -1, err
+	}
+
+	resp := serviceInstance.client.Get(u.String())
+	if resp.Err != nil {
+		return nil, -1, resp.Err
+	}
+
+	if len(resp.Body) > 0 {
+		respErr := map[string]interface{}{}
+		if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return nil, resp.StatusCode, serviceInstance.wrapError(errorMessage)
+		}
+	}
+	respJson := &SpecialistList{}
 	if len(resp.Body) > 0 {
 		if err := json.Unmarshal(resp.Body, respJson); err != nil {
 			return nil, resp.StatusCode, err
