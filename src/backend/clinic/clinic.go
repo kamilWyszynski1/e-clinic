@@ -12,12 +12,15 @@ import (
 type Assistant interface {
 	// GetSpecialistFreeTime returns specialist's free time
 	GetSpecialistFreeTime(id uuid.UUID, timeRange *TimeRange) (*TimeRanges, int, error)
+	//IsSpecialistFree(id uuid.UUID, timeRange *TimeRange) ()
 	// MakePrescription creates prescription
 	MakePrescription(p *Prescription) (int, error)
 	// AcceptAppointment specialist accepts appointment
 	AcceptAppointment(aID uuid.UUID) (int, error)
 	// RejectAppointment specialist rejects appointment
 	RejectAppointment(aID uuid.UUID) (int, error)
+
+	CreatePatient(p *PatientRequest) (*models.Patient, int, error)
 
 	// CreateAppointment checks if appointment is valid and schedules it
 	CreateAppointment(a *Appointment) (*models.Appointment, int, error)
@@ -34,6 +37,26 @@ type Assistant interface {
 	GetDrug(drugID int) (*DrugWithSubstances, int, error)
 	// GetReplacement returns drug's replacements
 	GetReplacement(drugID int, minSimilarity float64) (*Drugs, int, error)
+}
+
+type PatientRequest struct {
+	Email   string            `json:"email"`
+	Name    string            `json:"name"`
+	Surname string            `json:"surname"`
+	Gender  models.Genderenum `json:"gender"`
+}
+
+func (p PatientRequest) Validate() error {
+	if p.Email == "" {
+		return errors.New("empty e-mail")
+	} else if p.Name == "" {
+		return errors.New("empty name")
+	} else if p.Surname == "" {
+		return errors.New("empty surname")
+	} else if p.Gender == "" {
+		return errors.New("empty gender")
+	}
+	return nil
 }
 
 type SpecialistList struct {

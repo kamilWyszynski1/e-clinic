@@ -11,6 +11,9 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
+
 Vue.config.productionTip = false
 
 new Vue({

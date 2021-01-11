@@ -75,8 +75,16 @@ func (h Handler) GetDrug(drugID int) (*clinic.DrugWithSubstances, int, error) {
 const neoReplacementsQuery = `CALL gds.nodeSimilarity.stream('drug')
 YIELD node1, node2, similarity
 WHERE gds.util.asNode(node1).id = '%d' AND similarity > %f
-RETURN gds.util.asNode(node2).id AS drug, similarity
-ORDER BY similarity DESCENDING, drug`
+RETURN 
+	gds.util.asNode(node2).id AS id, 
+    gds.util.asNode(node2).moc as moc,
+    gds.util.asNode(node2).nazwa as nazwa,
+    gds.util.asNode(node2).nazwa_powszechna as nazwa_powszechna,
+    gds.util.asNode(node2).typ as typ,
+    gds.util.asNode(node2).postac as postac,
+    similarity
+ORDER BY similarity DESCENDING, id, moc, nazwa, nazwa_powszechna, typ, postac
+`
 
 func (h Handler) GetReplacement(drugID int, minSimilarity float64) (*clinic.Drugs, int, error) {
 	log := h.log.WithField("method", "GetReplacement")
@@ -92,7 +100,7 @@ func (h Handler) GetReplacement(drugID int, minSimilarity float64) (*clinic.Drug
 
 	drugs := make([]*models.Drug, 0)
 	for res.Next() {
-		stringID := res.Record().GetByIndex(0).(string)
+		stringID := f(res.Record().Get("id"))
 		id, err := strconv.Atoi(stringID)
 		if err != nil {
 			log.WithError(err).Error("failed to parse id")

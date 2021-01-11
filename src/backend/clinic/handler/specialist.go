@@ -27,6 +27,10 @@ func (h Handler) GetSpecialistFreeTime(id uuid.UUID, tr *clinic.TimeRange) (*cli
 	}}, http.StatusOK, nil
 }
 
+func (h Handler) isSpecialistFree(id uuid.UUID, tr *clinic.TimeRange) (bool, error) {
+	return true, nil
+}
+
 const (
 	checkStateAndSpecialist = `SELECT sf.specialist = ? FROM specialist_fee sf
 JOIN appointment a on sf.id = a.specialist_fee

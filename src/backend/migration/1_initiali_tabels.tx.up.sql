@@ -33,6 +33,16 @@ CREATE TABLE specialist
     updated_at   TIMESTAMP WITH TIME ZONE
 );
 
+CREATE TABLE drug
+(
+    id                  INT PRIMARY KEY,
+    name                VARCHAR NOT NULL,
+    type_of_preparation VARCHAR NOT NULL,
+    common_name         VARCHAR NOT NULL,
+    strength            VARCHAR NOT NULL,
+    shape               VARCHAR NOT NULL
+);
+
 CREATE TABLE specialist_fee
 (
     id             uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
@@ -107,24 +117,11 @@ CREATE TABLE payment
     updated_at  TIMESTAMP WITH TIME ZONE
 );
 
-CREATE TABLE drug
-(
-    id                  INT PRIMARY KEY,
-    name                VARCHAR NOT NULL,
-    type_of_preparation VARCHAR NOT NULL,
-    common_name         VARCHAR NOT NULL,
-    strength            VARCHAR NOT NULL, -- 4mg/5ml
-    shape               VARCHAR NOT NULL
-);
-
-CREATE INDEX lowered_name_inx ON drug USING gin (name gin_trgm_ops); -- like index
-
 CREATE TABLE substance
 (
     id   uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR NOT NULL
 );
-
 
 CREATE TABLE composition
 (

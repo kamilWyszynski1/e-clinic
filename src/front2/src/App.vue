@@ -3,14 +3,18 @@
     <div id="nav">
       <h1>E-clinic bitches</h1>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/patient">Patient</router-link> |
-      <router-link to="/home">Home</router-link> |
       <router-link to="/profile">Profile</router-link> |
       <router-link to="/appointments">Appointments</router-link> |
       <router-link to="/drugs">Drug library</router-link> |
     </div>
-    <router-view/>
+    <router-view />
+    <div>
+      <b-modal id="error" title="BootstrapVue">
+        <p class="my-4">
+          Something went wrong
+        </p>
+      </b-modal>
+    </div>
   </div>
 </template>
 

@@ -48,7 +48,7 @@ type Watcher struct {
 func NewWatcher(db *dbr.Session, log logrus.FieldLogger, sleep time.Duration, paymentCli *payugo.Client, mailCli mailing.Mailer) *Watcher {
 	return &Watcher{
 		db:    db,
-		log:   log,
+		log:   log.WithField("watcher", "payment"),
 		sleep: sleep,
 		ch: channels{
 			AcceptedCh: make(chan *newPayment, 100),
@@ -235,5 +235,51 @@ func (w Watcher) handlePendingPayment(p *pendingPayment) error {
 		return err
 	}
 	w.log.Debug("appointment payment accepted")
+	go w.mockPrescription(p.AppointmentID)
 	return nil
+}
+
+func (w Watcher) mockPrescription(aID uuid.UUID) {
+	log := w.log.WithField("method", "mockPrescription")
+
+	result := models.AppointmentResult{
+		ID:          uuid.NewV4(),
+		Appointment: aID,
+		Comment:     "This is a mock prescription. Just for presentation purposes",
+	}
+	pres := models.AppointmentResultPrescription{
+		ID:                uuid.NewV4(),
+		AppointmentResult: result.ID,
+		Drug:              100000505,
+		Dosing:            "2 times per day.",
+	}
+	pres2 := models.AppointmentResultPrescription{
+		ID:                uuid.NewV4(),
+		AppointmentResult: result.ID,
+		Drug:              100001210,
+		Dosing:            "1 times per day.",
+	}
+	pres3 := models.AppointmentResultPrescription{
+		ID:                uuid.NewV4(),
+		AppointmentResult: result.ID,
+		Drug:              100002131,
+		Dosing:            "Max 3 times in a day.",
+	}
+
+	if err := result.Insert(w.db); err != nil {
+		log.WithError(err).Error("failed to insert mock result")
+		return
+	}
+	if err := pres.Insert(w.db); err != nil {
+		log.WithError(err).Error("failed to insert mock prescription")
+		return
+	}
+	if err := pres2.Insert(w.db); err != nil {
+		log.WithError(err).Error("failed to insert mock prescription")
+		return
+	}
+	if err := pres3.Insert(w.db); err != nil {
+		log.WithError(err).Error("failed to insert mock prescription")
+		return
+	}
 }

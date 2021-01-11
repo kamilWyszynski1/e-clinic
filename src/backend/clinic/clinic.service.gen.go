@@ -148,6 +148,48 @@ func RegisterAssistant(instance Assistant, r *chi.Mux, log logrus.FieldLogger) {
 				}
 			}
 		})
+		r.Post("/CreatePatient", func(writer http.ResponseWriter, request *http.Request) {
+			// Reading argument p
+			rawBody, err := ioutil.ReadAll(request.Body)
+			if err != nil {
+				log.WithError(err).Error("can't read body")
+				writer.WriteHeader(http.StatusBadRequest)
+				return
+			}
+			var p *PatientRequest
+			if len(rawBody) != 0 {
+				p = &PatientRequest{}
+				if err := json.Unmarshal(rawBody, p); err != nil {
+					log.WithError(err).Error("can't unmarshal body")
+					writer.WriteHeader(http.StatusBadRequest)
+					return
+				}
+			}
+
+			// Calling function CreatePatient
+			{
+				response, responseCode, err := instance.CreatePatient(p)
+				writer.WriteHeader(responseCode)
+				if err != nil {
+					if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+						fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+						log.WithError(err).Error("Could not marshal response error")
+					}
+					return
+				}
+				if response != nil {
+					if err := json.NewEncoder(writer).Encode(response); err != nil {
+						log.WithError(err).Error("Could not write response")
+						writer.WriteHeader(http.StatusInternalServerError)
+						if err := json.NewEncoder(writer).Encode(&struct{ Error string }{Error: err.Error()}); err != nil {
+							fmt.Fprintf(writer, "{\"Error\": \"Could not marshal response error\"}")
+							log.WithError(err).Error("Could not marshal response error")
+						}
+						return
+					}
+				}
+			}
+		})
 		r.Post("/CreateAppointment", func(writer http.ResponseWriter, request *http.Request) {
 			// Reading argument a
 			rawBody, err := ioutil.ReadAll(request.Body)
@@ -573,6 +615,39 @@ func (serviceInstance *AssistantRestClient) RejectAppointment(aID uuid.UUID) (in
 		}
 	}
 	return resp.StatusCode, nil
+}
+
+func (serviceInstance *AssistantRestClient) CreatePatient(p *PatientRequest) (*models.Patient, int, error) {
+	u, err := url.Parse(serviceInstance.address + "/api/v1/Assistant/CreatePatient")
+	if err != nil {
+		return nil, -1, err
+	}
+
+	data, err := json.Marshal(p)
+	if err != nil {
+		return nil, -1, err
+	}
+	resp := serviceInstance.client.Post(u.String(), data)
+	if resp.Err != nil {
+		return nil, -1, resp.Err
+	}
+
+	if len(resp.Body) > 0 {
+		respErr := map[string]interface{}{}
+		if err := json.Unmarshal(resp.Body, &respErr); err != nil {
+			return nil, resp.StatusCode, err
+		}
+		if errorMessage, found := respErr["Error"]; found && len(respErr) == 1 {
+			return nil, resp.StatusCode, serviceInstance.wrapError(errorMessage)
+		}
+	}
+	respJson := &models.Patient{}
+	if len(resp.Body) > 0 {
+		if err := json.Unmarshal(resp.Body, respJson); err != nil {
+			return nil, resp.StatusCode, err
+		}
+	}
+	return respJson, resp.StatusCode, nil
 }
 
 func (serviceInstance *AssistantRestClient) CreateAppointment(a *Appointment) (*models.Appointment, int, error) {

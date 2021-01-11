@@ -7,7 +7,9 @@ import (
 	"e-clinic/src/backend/clinic/payment"
 	"e-clinic/src/backend/db"
 	payugo "e-clinic/src/backend/payu"
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/go-chi/chi"
@@ -30,7 +32,7 @@ func main() {
 
 	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
 
-	driver, err := neo4j.NewDriver("bolt://localhost:7687", neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
+	driver, err := neo4j.NewDriver(fmt.Sprintf("bolt://%s:7687", os.Getenv("NEO_PATH")), neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
 	if err != nil {
 		panic(err)
 	}
@@ -41,8 +43,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	//fmt.Println(session.Run("call gds.graph.create('drug', ['Drug', 'Sub'], '*')", nil))
 
+	// CREATE SIMILARITY GRAPH
+	res, err := session.Run("call gds.graph.create('drug', ['Lek', 'Sub'], '*')", nil)
+	fmt.Println(res, err)
 	cli := handler.NewHandler(sess, log, session)
 	clinic.RegisterAssistant(cli, r, log)
 
@@ -61,8 +65,18 @@ func main() {
 		panic(err)
 	}
 
+	f := func(envName string) string {
+		env := os.Getenv(envName)
+		if env == "" {
+			log.Fatalf("%s must be set", envName)
+		}
+		return env
+	}
+
 	// MAILING
-	mailCli := mailing.NewClient(mailjet.NewMailjetClient("fb71068ebf8203243a86c64e951f7778", "3450a83ffd0cf668ded207e42f46830b"))
+	mailCli := mailing.NewClient(mailjet.NewMailjetClient(f("API_PUBLIC_KEY"), f("API_PRIVATE_KEY")))
+
+	//mailCli := mailing.NewClient(mailjet.NewMailjetClient("fb71068ebf8203243a86c64e951f7778", "3450a83ffd0cf668ded207e42f46830b"))
 
 	payment.NewWatcher(
 		sess, log, 15*time.Second, p, mailCli,
