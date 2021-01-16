@@ -1,0 +1,598 @@
+<?xml version="1.0"?>
+<produktyLecznicze stanNaDzien="2020-11-18" xmlns="http://rejestrymedyczne.csioz.gov.pl/rpl/eksport-danych-v1.0">
+    <produktLeczniczy nazwaProduktu="Zoledronic acid Fresenius Kabi" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acidum zoledronicum" moc="4 mg/5 ml" postac="koncentrat do sporzadzania roztworu do infuzji" podmiotOdpowiedzialny="Fresenius Kabi Polska Sp. z o.o." typProcedury="DCP" numerPozwolenia="20708" waznoscPozwolenia="Bezterminowy" kodATC="M05BA08" id="100000014">
+        <substancjeCzynne>
+            <substancjaCzynna>Acidum zoledronicum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. 5 ml" kodEAN="05909991023652" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="2" />
+            <opakowanie wielkosc="4" jednostkaWielkosci="fiol. 5 ml" kodEAN="05909991023669" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="3" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 5 ml" kodEAN="05909991023676" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="4" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Edelan" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Mometasoni furoas" moc="1 mg/g" postac="krem" podmiotOdpowiedzialny="Zaklady Farmaceutyczne POLPHARMA S.A." typProcedury="NAR" numerPozwolenia="20899" waznoscPozwolenia="Bezterminowy" kodATC="D07AC13" id="100000020">
+        <substancjeCzynne>
+            <substancjaCzynna>Mometasoni furoas</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 15 g" kodEAN="05909991023683" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="5" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 30 g" kodEAN="05909991023690" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="6" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Nalgesin" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Naproxenum natricum" moc="275 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Krka, d.d., Novo mesto" typProcedury="DCP" numerPozwolenia="20696" waznoscPozwolenia="Bezterminowy" kodATC="M01AE02" id="100000037">
+        <substancjeCzynne>
+            <substancjaCzynna>Naproxenum natricum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909991023744" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="8" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909991023751" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="9" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909991023768" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="10" />
+            <opakowanie wielkosc="40" jednostkaWielkosci="tabl." kodEAN="05909991066178" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="84656" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909991023775" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="11" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Nalgesin Forte" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Naproxenum natricum" moc="550 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Krka, d.d., Novo mesto" typProcedury="DCP" numerPozwolenia="20697" waznoscPozwolenia="Bezterminowy" kodATC="M01AE02" id="100000043">
+        <substancjeCzynne>
+            <substancjaCzynna>Naproxenum natricum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909991023782" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="12" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909991023799" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="13" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909991023805" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="14" />
+            <opakowanie wielkosc="40" jednostkaWielkosci="tabl." kodEAN="05909991066185" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="84657" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kodEAN="05909991023829" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="15" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909991023836" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="16" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Diprobase" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="-" moc="-" postac="krem" podmiotOdpowiedzialny="Bayer Sp. z o.o." typProcedury="NAR" numerPozwolenia="07867" waznoscPozwolenia="Bezterminowy" kodATC="D07CC01" id="100000089">
+        <substancjeCzynne />
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 50 g" kodEAN="05909990786718" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="21" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="dyspenser 500 g" kodEAN="05909990786725" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="46984" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Amlozek" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Amlodipinum" moc="10 mg" postac="Tabletki" podmiotOdpowiedzialny="Adamed Pharma S.A." typProcedury="NAR" numerPozwolenia="07998" waznoscPozwolenia="Bezterminowy" kodATC="C08CA01" id="100000095">
+        <substancjeCzynne>
+            <substancjaCzynna>Amlodipini besilas</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990799817" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="22" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990072866" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="37882" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Proxacin 1%" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Ciprofloxacinum" moc="10 mg/ml" postac="koncentrat do sporzadzania roztworu do infuzji" podmiotOdpowiedzialny="Alvogen Pharma Trading Europe EOOD" typProcedury="NAR" numerPozwolenia="08055" waznoscPozwolenia="Bezterminowy" kodATC="J01MA02" id="100000126">
+        <substancjeCzynne>
+            <substancjaCzynna>Ciprofloxacinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="5" jednostkaWielkosci="fiol. 20 ml" kodEAN="05909990805617" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="38268" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp. 10 ml" kodEAN="05909990805518" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="25" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 20 ml" kodEAN="05909990805624" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="38269" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Aprovel" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Irbesartanum" moc="150 mg" postac="Tabletki" podmiotOdpowiedzialny="sanofi-aventis groupe" typProcedury="CEN" kodATC="C09CA04" id="100000250">
+        <substancjeCzynne>
+            <substancjaCzynna>Irbesartanum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="14" jednostkaWielkosci="tabl." kodEAN="05909990782543" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/97/046/011" dystrybutorRownolegly="" id="20899" />
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990782512" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/97/046/004" dystrybutorRownolegly="" id="54" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="tabl." kodEAN="05909990782529" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/97/046/005" dystrybutorRownolegly="" id="55" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="tabl. (56 x 1)" kodEAN="05909990430178" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/97/046/014" dystrybutorRownolegly="" id="31950" />
+            <opakowanie wielkosc="98" jednostkaWielkosci="tabl." kodEAN="05909990782536" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/97/046/006" dystrybutorRownolegly="" id="56" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Twinrix Adult" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Vaccinum hepatitidis A inactivatum et hepatitidis B (ADNr)  adsorbatum" postac="zawiesina do wstrzykiwan" podmiotOdpowiedzialny="GlaxoSmithKline Biologicals S.A." typProcedury="CEN" numerPozwolenia="07948" kodATC="J07BC20" id="100000296">
+        <substancjeCzynne>
+            <substancjaCzynna>Vaccinum Hepatits A+B</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="amp.-strzyk. 1 ml z igla" kodEAN="05909990794843" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/007" dystrybutorRownolegly="" id="62" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="amp.-strzyk. 1 ml bez igly" kodEAN="05909990794874" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/001" dystrybutorRownolegly="" id="65" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp.-strzyk. 1 ml z igla" kodEAN="05909990794850" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/008" dystrybutorRownolegly="" id="63" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp.-strzyk. 1 ml bez igly" kodEAN="05909990794881" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/002" dystrybutorRownolegly="" id="66" />
+            <opakowanie wielkosc="25" jednostkaWielkosci="amp.-strzyk. 1 ml z igla" kodEAN="05909990794867" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/009" dystrybutorRownolegly="" id="64" />
+            <opakowanie wielkosc="25" jednostkaWielkosci="amp.-strzyk. 1 ml bez igly" kodEAN="05909990794898" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/96/020/003" dystrybutorRownolegly="" id="67" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. 1 ml" kodEAN="05909990794812" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="58" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 1 ml" kodEAN="05909990794829" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="59" />
+            <opakowanie wielkosc="25" jednostkaWielkosci="fiol. 1 ml" kodEAN="05909990794836" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="61" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="AmBisome liposomal" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Amphotericinum B" moc="50 mg" postac="proszek do sporzadzania dyspersji do infuzji" podmiotOdpowiedzialny="Gilead Sciences Ireland UC" typProcedury="NAR" numerPozwolenia="08000" waznoscPozwolenia="Bezterminowy" kodATC="J02AA01" id="100000310">
+        <substancjeCzynne>
+            <substancjaCzynna>Amphotericinum B</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. 50 mg + filtr membranowy" kodEAN="05909990800025" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="13146" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 50 mg + filtr membranowy" kodEAN="05909990800018" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="70" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Indapen SR" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Indapamidum" moc="1,5 mg" postac="Tabletki o przedluzonym uwalnianiu" podmiotOdpowiedzialny="Zaklady Farmaceutyczne POLPHARMA S.A." typProcedury="NAR" numerPozwolenia="14890" waznoscPozwolenia="Bezterminowy" kodATC="C03BA11" id="100000356">
+        <substancjeCzynne>
+            <substancjaCzynna>Indapamidum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990665891" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="14522" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990665907" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="29048" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="tabl." kodEAN="05909990665938" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="29049" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990665945" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="29050" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Xyrem" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Natrii hydroxybutyras" moc="500 mg/ml" postac="roztwor doustny" podmiotOdpowiedzialny="UCB Pharma S.A." typProcedury="CEN" kodATC="N07XX04" id="100000362">
+        <substancjeCzynne>
+            <substancjaCzynna>sodium hydroxybuteras</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 240 ml" kodEAN="05909990022502" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/05/312/001" dystrybutorRownolegly="" id="34656" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Rulid" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Roxithromycinum" moc="50 mg" postac="Tabletki do sporzadzania zawiesiny doustnej" podmiotOdpowiedzialny="Sanofi-Aventis France" typProcedury="NAR" numerPozwolenia="07859" waznoscPozwolenia="Bezterminowy" kodATC="J01FA06" id="100000391">
+        <substancjeCzynne>
+            <substancjaCzynna>Roxithromycinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990785919" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="84" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Zerit" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Stavudinum" moc="20 mg" postac="kapsulki twarde" podmiotOdpowiedzialny="BRISTOL-MYERS SQUIBB PHARMA EEIG" typProcedury="CEN" waznoscPozwolenia="2020-06-24" kodATC="J05AF04" id="100000480">
+        <substancjeCzynne>
+            <substancjaCzynna>Stavudinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="56" jednostkaWielkosci="kaps." kodEAN="05909990778812" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/96/009/006" dystrybutorRownolegly="" id="99" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="kaps." kodEAN="05909990778829" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/96/009/005" dystrybutorRownolegly="" id="100" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Filgrastim Hexal" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Filgrastimum" moc="30 mln j.m./0,5 ml (60 mln j.m./ml)" postac="Roztwor do wstrzykiwan lub infuzji" podmiotOdpowiedzialny="Hexal AG" typProcedury="CEN" kodATC="L03AA02" id="100000505">
+        <substancjeCzynne>
+            <substancjaCzynna>Filgrastimum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="amp.-strzyk. 0,5 ml" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/009" dystrybutorRownolegly="" id="122162" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="amp.-strzyk. 0,5 ml z zabezpieczeniem igly" kodEAN="05909990683307" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="46180" />
+            <opakowanie wielkosc="3" jednostkaWielkosci="amp.-strzyk. 0,5 ml" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/010" dystrybutorRownolegly="" id="122163" />
+            <opakowanie wielkosc="3" jednostkaWielkosci="amp.-strzyk. 0,5 ml z zabezpieczeniem igly" kodEAN="05909990683338" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/002" dystrybutorRownolegly="" id="46181" />
+            <opakowanie wielkosc="5" jednostkaWielkosci="amp.-strzyk. 0,5 ml" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/015" dystrybutorRownolegly="" id="122164" />
+            <opakowanie wielkosc="5" jednostkaWielkosci="amp.-strzyk. 0,5 ml z zabezpieczeniem igly" kodEAN="05909990683345" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/003" dystrybutorRownolegly="" id="46387" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp.-strzyk. 0,5 ml" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/08/496/012" dystrybutorRownolegly="" id="122165" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp.-strzyk. 0,5 ml z zabezpieczeniem igly" kodEAN="05909990683352" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="48680" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Exelon" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Rivastigminum" moc="6 mg" postac="kapsulki twarde" podmiotOdpowiedzialny="Novartis Europharm Limited" typProcedury="CEN" kodATC="N06DA03" id="100000592">
+        <substancjeCzynne>
+            <substancjaCzynna>Rivastigminum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="28" jednostkaWielkosci="kaps." kodEAN="05909990781416" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/010" dystrybutorRownolegly="" id="113" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="kaps." kodEAN="05909990781423" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/011" dystrybutorRownolegly="" id="117" />
+            <opakowanie wielkosc="112" jednostkaWielkosci="kaps." kodEAN="05909990781430" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/012" dystrybutorRownolegly="" id="118" />
+            <opakowanie wielkosc="250" jednostkaWielkosci="kaps." kodEAN="05909990000968" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/017" dystrybutorRownolegly="" id="23775" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Ursopol" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acidum ursodeoxycholicum" moc="300 mg" postac="kapsulki twarde" podmiotOdpowiedzialny="Bausch Health Ireland Limited" typProcedury="NAR" numerPozwolenia="07982" waznoscPozwolenia="Bezterminowy" kodATC="A05AA02" id="100000600">
+        <substancjeCzynne>
+            <substancjaCzynna>Acidum ursodeoxycholicum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="50" jednostkaWielkosci="kaps." kodEAN="05909990798223" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="120" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="kaps." kodEAN="05909990798216" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="119" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Bronchicum T" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Thymi extractum fluidum" moc="100 mg" postac="Tabletki do ssania" podmiotOdpowiedzialny="Sanofi-Aventis Sp. z o.o." typProcedury="NAR" numerPozwolenia="07892" waznoscPozwolenia="Bezterminowy" id="100000617">
+        <substancjeCzynne>
+            <substancjaCzynna>Thymi extractum fluidum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909990789214" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="121" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kodEAN="05909990789221" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="122" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Arthryl Fast" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Glucosamini sulfas + Lidocaini hydrochloridum" moc="(400 mg + 10 mg)/2 ml" postac="roztwor do wstrzykiwan" podmiotOdpowiedzialny="Mylan Healthcare Sp. z o.o." typProcedury="NAR" numerPozwolenia="20761" waznoscPozwolenia="Bezterminowy" id="100000623">
+        <substancjeCzynne>
+            <substancjaCzynna>Glucosamini sulfas</substancjaCzynna>
+            <substancjaCzynna>Lidocaini hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="12" jednostkaWielkosci="amp." kodEAN="05909991029944" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="59236" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="NovoNorm" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Repaglinidum" moc="0,5 mg" postac="Tabletki" podmiotOdpowiedzialny="Novo Nordisk A/S" typProcedury="CEN" kodATC="A10BX02" id="100000652">
+        <substancjeCzynne>
+            <substancjaCzynna>Repaglinidum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990804016" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/98/076/004" dystrybutorRownolegly="" id="128" />
+            <opakowanie wielkosc="90" jednostkaWielkosci="tabl." kodEAN="05909990804023" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/98/076/005" dystrybutorRownolegly="" id="129" />
+            <opakowanie wielkosc="120" jednostkaWielkosci="tabl." kodEAN="05909990804030" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/98/076/006" dystrybutorRownolegly="" id="130" />
+            <opakowanie wielkosc="270" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/98/076/024" dystrybutorRownolegly="" id="105331" />
+            <opakowanie wielkosc="360" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="EU/1/98/076/007" dystrybutorRownolegly="" id="105330" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Flegamina Classic Junior o smaku truskawkowym" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Bromhexini hydrochloridum" moc="2 mg/5 ml" postac="syrop" podmiotOdpowiedzialny="Teva Pharmaceuticals Polska Sp. z o.o." typProcedury="NAR" numerPozwolenia="08064" waznoscPozwolenia="Bezterminowy" kodATC="R05CB02" id="100000706">
+        <substancjeCzynne>
+            <substancjaCzynna>Bromhexini hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 200 ml" kodEAN="05909990042876" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="35498" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 120 ml" kodEAN="05909990806416" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="62239" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Neomycinum Jelfa" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Neomycini sulfas" moc="5 mg/g" postac="Masc do oczu" podmiotOdpowiedzialny="Bausch Health Ireland Limited" typProcedury="NAR" numerPozwolenia="07909" waznoscPozwolenia="Bezterminowy" kodATC="S01AA03" id="100000729">
+        <substancjeCzynne>
+            <substancjaCzynna>Neomycini sulfas</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 3 g" kodEAN="05909990790913" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="45978" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Citocartin 100" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Articaini hydrochloridum + Adrenalinum" moc="(40 mg + 10 mcg)/ml" postac="roztwor do wstrzykiwan" podmiotOdpowiedzialny="Molteni Dental s.r.l." typProcedury="NAR" numerPozwolenia="07886" waznoscPozwolenia="Bezterminowy" kodATC="N01BB58" id="100000735">
+        <substancjeCzynne>
+            <substancjaCzynna>Articaini hydrochloridum</substancjaCzynna>
+            <substancjaCzynna>Adrenalinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="wkladow do strzykawek 1,7 ml" kodEAN="05909990788613" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="136" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="wkladow do strzykawek 1,7 ml" kodEAN="05909990788620" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="137" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Lacipil" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Lacidipinum" moc="6 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="GlaxoSmithKline (Ireland) Limited" typProcedury="NAR" numerPozwolenia="12636" waznoscPozwolenia="Bezterminowy" kodATC="C08CA09" id="100000764">
+        <substancjeCzynne>
+            <substancjaCzynna>Lacidipinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="14" jednostkaWielkosci="tabl." kodEAN="05909990625680" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="34614" />
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990625697" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="34615" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Loratadyna Galena" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Loratadinum" moc="10 mg" postac="Tabletki" podmiotOdpowiedzialny="Farmaceutyczna Spoldzielnia Pracy &quot;Galena&quot;" typProcedury="NAR" numerPozwolenia="07954" waznoscPozwolenia="Bezterminowy" kodATC="R06AX13" id="100000801">
+        <substancjeCzynne>
+            <substancjaCzynna>Loratadinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990795420" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="150" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990670253" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="46671" />
+            <opakowanie wielkosc="90" jednostkaWielkosci="tabl." kodEAN="05909990670260" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="46672" />
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990795413" kategoriaDostepnosci="OTC" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="146" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Sortis 20" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Atorvastatinum" moc="20 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Upjohn EESV" typProcedury="NAR" numerPozwolenia="07847" waznoscPozwolenia="Bezterminowy" kodATC="C10AA05" id="100000818">
+        <substancjeCzynne>
+            <substancjaCzynna>Atorvastatinum calcicum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990784714" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="151" />
+            <opakowanie wielkosc="84" jednostkaWielkosci="tabl." kodEAN="05909990634545" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="42165" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Tramal Retard 200" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Tramadoli hydrochloridum" moc="200 mg" postac="Tabletki o przedluzonym uwalnianiu" podmiotOdpowiedzialny="STADA Arzneimittel AG" typProcedury="NAR" numerPozwolenia="07864" waznoscPozwolenia="Bezterminowy" kodATC="N02AX02" id="100000824">
+        <substancjeCzynne>
+            <substancjaCzynna>Tramadoli hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990786411" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="152" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990786428" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="153" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kodEAN="05909990786435" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="154" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Imovane" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Zopiclonum" moc="7,5 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Sanofi-Aventis France" typProcedury="NAR" numerPozwolenia="01722" waznoscPozwolenia="Bezterminowy" kodATC="N05CF01" id="100000882">
+        <substancjeCzynne>
+            <substancjaCzynna>Zopiclonum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="5" jednostkaWielkosci="tabl." kodEAN="05909990172214" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="171" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl. (2 x 10)" kodEAN="05909990172221" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="172" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl. ( 1 x 20)" kodEAN="05909990419395" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="29532" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Xanax SR" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Alprazolamum" moc="0,5 mg" postac="Tabletki o przedluzonym uwalnianiu" podmiotOdpowiedzialny="Upjohn EESV" typProcedury="NAR" numerPozwolenia="07939" waznoscPozwolenia="Bezterminowy" kodATC="N05BA12" id="100000936">
+        <substancjeCzynne>
+            <substancjaCzynna>Alprazolamum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990793914" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="178" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990793921" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="179" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Zerit" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Stavudinum" moc="200 mg1 mg/ml" postac="proszek do sporzadzania zawiesiny doustnej" podmiotOdpowiedzialny="BRISTOL-MYERS SQUIBB PHARMA EEIG" typProcedury="CEN" waznoscPozwolenia="2020-06-24" kodATC="J05AF04" id="100000965">
+        <substancjeCzynne>
+            <substancjaCzynna>Stavudinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 200 mg" kodEAN="05909990779215" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/96/009/009" dystrybutorRownolegly="" id="185" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Veral" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Diclofenacum natricum" moc="10 mg/g (1%)" postac="Zel" podmiotOdpowiedzialny="Herbacos Recordati s.r.o." typProcedury="NAR" numerPozwolenia="07978" waznoscPozwolenia="Bezterminowy" kodATC="M02AA15" id="100000988">
+        <substancjeCzynne>
+            <substancjaCzynna>Diclofenacum natricum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 55 g" kodEAN="05909990797813" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="189" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 100 g" kodEAN="05909991027605" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="80943" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Ifapidin" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Ticlopidinum" moc="250 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Egis Pharmaceuticals Ltd." typProcedury="NAR" numerPozwolenia="07971" waznoscPozwolenia="Bezterminowy" kodATC="B01AC05" id="100000994">
+        <substancjeCzynne>
+            <substancjaCzynna>Ticlopidini hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl. w blistrze (1 x 20)" kodEAN="05909990797110" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="23839" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl. w blistrach (2 x 10)" kodEAN="05909990694853" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49633" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl. (2 x 15)" kodEAN="05909990797127" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="23840" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl. w blistrach (3 x 20)" kodEAN="05909990797134" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="23841" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl. w blistrach (6 x 10)" kodEAN="05909990694846" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49632" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Pelogel" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Wodny wyciag borowinowy" moc="-" postac="Zel do stosowania na dziasla" podmiotOdpowiedzialny="Przedsiebiorstwo Farmaceutyczne SULPHUR ZDROJ Exim Sp. z o.o." typProcedury="NAR" numerPozwolenia="07959" waznoscPozwolenia="Bezterminowy" kodATC="D11A" id="100001019">
+        <substancjeCzynne>
+            <substancjaCzynna>Wodny wyciag borowinowy</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="tuba 40 g" kodEAN="05909990795918" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="196" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Lamitrin S" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Lamotriginum" moc="25 mg" postac="Tabletki do rozgryzania i zucia / do sporzadzania zawiesiny " podmiotOdpowiedzialny="GlaxoSmithKline (Ireland) Limited" typProcedury="MRP" numerPozwolenia="07872" waznoscPozwolenia="Bezterminowy" kodATC="N03AX09" id="100001025">
+        <substancjeCzynne>
+            <substancjaCzynna>Lamotriginum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990691128" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49295" />
+            <opakowanie wielkosc="14" jednostkaWielkosci="tabl." kodEAN="05909990691135" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49296" />
+            <opakowanie wielkosc="21" jednostkaWielkosci="tabl." kodEAN="05909990422302" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="32560" />
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990691142" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49297" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990787210" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="197" />
+            <opakowanie wielkosc="42" jednostkaWielkosci="tabl." kodEAN="05909990422296" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="32558" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kodEAN="05909990691159" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49298" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="tabl." kodEAN="05909990787227" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="198" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990691166" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="49299" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Cipramil" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Citalopramum" moc="20 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="H. Lundbeck A/S" typProcedury="NAR" numerPozwolenia="08015" waznoscPozwolenia="Bezterminowy" kodATC="N06AB04" id="100001120">
+        <substancjeCzynne>
+            <substancjaCzynna>Citalopramum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990801510" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="210" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="tabl." kodEAN="05909990801527" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="211" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Clodivac" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Vaccinum diphtheriae et tetani, antigenio minutum, adsorbatum Szczepionka przeciw blonicy i tezcowi, adsorbowana, o zmniejszonej zawartosci antygenu" moc="nie mniej niz 40 j.m. toksoidu tezcowego i nie mniej niz 5 j.m. toksoidu bloniczego/0,5 ml; 1 dawka (0,5 ml)" postac="zawiesina do wstrzykiwan" podmiotOdpowiedzialny="Instytut Biotechnologii Surowic i Szczepionek BIOMED S.A." typProcedury="NAR" numerPozwolenia="00038" waznoscPozwolenia="Bezterminowy" kodATC="J07AM51" id="100001210">
+        <substancjeCzynne>
+            <substancjaCzynna>Toksoid tezcowy</substancjaCzynna>
+            <substancjaCzynna>Toksoid bloniczy</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="amp. 0,5 ml" kodEAN="05909990003822" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="20806" />
+            <opakowanie wielkosc="15" jednostkaWielkosci="amp. 0,5 ml" kodEAN="05909990003815" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="9787" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Singulair 5" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Montelukastum" moc="5 mg" postac="Tabletki do rozgryzania i zucia" podmiotOdpowiedzialny="MSD Polska Sp. z o.o." typProcedury="NAR" numerPozwolenia="07956" waznoscPozwolenia="Bezterminowy" kodATC="R03DC03" id="100001350">
+        <substancjeCzynne>
+            <substancjaCzynna>Montelukastum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="14" jednostkaWielkosci="tabl." kodEAN="05909990795611" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="247" />
+            <opakowanie wielkosc="28" jednostkaWielkosci="tabl." kodEAN="05909990795628" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="248" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990650217" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="44050" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Exelon" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Rivastigminum" moc="3 mg" postac="kapsulki twarde" podmiotOdpowiedzialny="Novartis Europharm Limited" typProcedury="CEN" kodATC="N06DA03" id="100001433">
+        <substancjeCzynne>
+            <substancjaCzynna>Rivastigminum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="28" jednostkaWielkosci="kaps." kodEAN="05909990781218" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/004" dystrybutorRownolegly="" id="134" />
+            <opakowanie wielkosc="56" jednostkaWielkosci="kaps." kodEAN="05909990781225" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/005" dystrybutorRownolegly="" id="269" />
+            <opakowanie wielkosc="112" jednostkaWielkosci="kaps." kodEAN="05909990781232" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/006" dystrybutorRownolegly="" id="270" />
+            <opakowanie wielkosc="250" jednostkaWielkosci="kaps." kodEAN="05909990000944" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/98/066/015" dystrybutorRownolegly="" id="23773" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="FANHDI" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Zespol ludzkiego czynnika krzepniecia VIII i ludzkiego czynnika von Willebranda" moc="50 j.m./ml; 500 j.m. + 60 j.m./ml; 600 j.m." postac="proszek i rozpuszczalnik do sporzadzania roztworu do wstrzykiwan i infuzji" podmiotOdpowiedzialny="Instituto Grifols S.A." typProcedury="NAR" numerPozwolenia="07836" waznoscPozwolenia="Bezterminowy" kodATC="B02BD06" id="100001485">
+        <substancjeCzynne>
+            <substancjaCzynna>Ludzki VIII czynnik krzepnecia krwi</substancjaCzynna>
+            <substancjaCzynna>Ludzki czynnik von Willebranda</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. proszku + 1 amp.-strzyk. rozp. + zestaw do sporzadzania i podania" kodEAN="05909990783618" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="46091" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Arthrotec" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Diclofenacum natricum + Misoprostolum" moc="50 mg + 0,2 mg" postac="Tabletki" podmiotOdpowiedzialny="Pfizer Europe MA EEIG" typProcedury="NAR" numerPozwolenia="07964" waznoscPozwolenia="Bezterminowy" kodATC="M01AB55" id="100001491">
+        <substancjeCzynne>
+            <substancjaCzynna>Diclofenacum natricum</substancjaCzynna>
+            <substancjaCzynna>Misoprostolum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990796410" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="276" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909990796427" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="277" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990796434" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="278" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990796441" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="279" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Bisocard" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Bisoprololum" moc="10 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="PharmaSwiss Ceska republika s.r.o." typProcedury="NAR" numerPozwolenia="08044" waznoscPozwolenia="Bezterminowy" kodATC="C07AB07" id="100001539">
+        <substancjeCzynne>
+            <substancjaCzynna>Bisoprololi fumaras</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990804412" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="284" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990804429" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="285" />
+            <opakowanie wielkosc="120" jednostkaWielkosci="tabl." kodEAN="05909991273286" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="115408" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Coffepirine Tabletki od bolu glowy" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acidum acetylsalicylicum + Coffeinum" moc="450 mg + 50 mg" postac="Tabletki" podmiotOdpowiedzialny="Medicofarma S.A." typProcedury="NAR" numerPozwolenia="07915" waznoscPozwolenia="Bezterminowy" kodATC="N02BA51" id="100001580">
+        <substancjeCzynne>
+            <substancjaCzynna>Acidum acetylsalicylicum</substancjaCzynna>
+            <substancjaCzynna>Coffeinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="6" jednostkaWielkosci="tabl." kodEAN="05909990211302" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="290" />
+            <opakowanie wielkosc="8" jednostkaWielkosci="tabl." kodEAN="05909990211326" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="25855" />
+            <opakowanie wielkosc="12" jednostkaWielkosci="tabl." kodEAN="05909990945054" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="73551" />
+            <opakowanie wielkosc="18" jednostkaWielkosci="tabl." kodEAN="05907509848018" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="87257" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05907509848025" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="87258" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Detimedac 100 mg" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Dacarbazinum" moc="100 mg" postac="proszek do sporzadzania roztworu do wstrzykiwan lub infuzji" podmiotOdpowiedzialny="medac Gesellschaft fur klinische Spezialpraparate mbH" typProcedury="NAR" numerPozwolenia="20781" waznoscPozwolenia="Bezterminowy" kodATC="L01AX04" id="100001628">
+        <substancjeCzynne>
+            <substancjaCzynna>Dacarbazinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 100 mg" kodEAN="05909991029500" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="21987" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Oxycort A" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Oxytetracyclinum + Hydrocortisoni acetas" moc="(10 mg + 10 mg)/g" postac="Masc do oczu" podmiotOdpowiedzialny="Bausch Health Ireland Limited" typProcedury="NAR" numerPozwolenia="07908" waznoscPozwolenia="Bezterminowy" kodATC="S01CA03" id="100001700">
+        <substancjeCzynne>
+            <substancjaCzynna>Hydrocortisoni acetas</substancjaCzynna>
+            <substancjaCzynna>Oxytetracyclini hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="op. 3 g" kodEAN="05909990790814" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="301" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Nicergolin" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Nicergolinum" moc="10 mg" postac="Tabletki" podmiotOdpowiedzialny="Farmaceutyczna Spoldzielnia Pracy FILOFARM" typProcedury="NAR" numerPozwolenia="07858" waznoscPozwolenia="Bezterminowy" kodATC="C04AE02" id="100001730">
+        <substancjeCzynne>
+            <substancjaCzynna>Nicergolinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990785810" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="302" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Bisocard" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Bisoprololum" moc="5 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="PharmaSwiss Ceska republika s.r.o." typProcedury="NAR" numerPozwolenia="08045" waznoscPozwolenia="Bezterminowy" kodATC="C07AB07" id="100001864">
+        <substancjeCzynne>
+            <substancjaCzynna>Bisoprololi fumaras</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990804511" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="325" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990804528" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="326" />
+            <opakowanie wielkosc="120" jednostkaWielkosci="tabl." kodEAN="05909991273279" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="115407" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="NovoSeven" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Eptacogum alfa (activatum). Czynnik VII krzepniecia krwi, rekombinowany, aktywowany" moc="1 mg (50 000 j.m.)" postac="proszek i rozpuszczalnik do sporzadzania roztworu do wstrzykiwan" podmiotOdpowiedzialny="Novo Nordisk A/S" typProcedury="CEN" kodATC="B02BD08" id="100001893">
+        <substancjeCzynne>
+            <substancjaCzynna>Factor VII coagulationis humanus</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. proszku + 1 fiol. rozp." kodEAN="05909990646753" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/96/006/004" dystrybutorRownolegly="" id="317" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="fiol. proszku + 1 amp.-strzyk. rozp. + 1 lacznik" kodEAN="05909991029968" kategoriaDostepnosci="Rpz" skasowane="NIE" numerEu="EU/1/96/006/008" dystrybutorRownolegly="" id="60466" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Zyrtec" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Cetirizini dihydrochloridum" moc="1 mg/ml" postac="roztwor doustny" podmiotOdpowiedzialny="Vedim Sp. z o.o." typProcedury="NAR" numerPozwolenia="07815" waznoscPozwolenia="Bezterminowy" kodATC="R06AE07" id="100001901">
+        <substancjeCzynne>
+            <substancjaCzynna>Cetirizini dihydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 75 ml" kodEAN="05909990781515" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="331" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 200 ml" kodEAN="05909990781539" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="332" />
+            <opakowanie wielkosc="1" jednostkaWielkosci="butelka 125 ml" kodEAN="05909990781522" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="46152" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Abaktal" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Pefloxacinum" moc="80 mg/ml" postac="roztwor do infuzji" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="00618" waznoscPozwolenia="2020-09-22" kodATC="J01MA03" id="100001999">
+        <substancjeCzynne>
+            <substancjaCzynna>Pefloxacini mesylas</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="amp. 5 ml" kodEAN="05909990061815" kategoriaDostepnosci="Lz" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="346" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Abaktal" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Pefloxacinum" moc="400 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="00617" waznoscPozwolenia="2019-09-27" kodATC="J01MA03" id="100002013">
+        <substancjeCzynne>
+            <substancjaCzynna>Pefloxacinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990061716" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="45455" />
+            <opakowanie wielkosc="2" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="349" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Bromocorn" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Bromocriptinum" moc="2,5 mg" postac="Tabletki" podmiotOdpowiedzialny="Farmaceutyczna Spoldzielnia Pracy FILOFARM" typProcedury="NAR" numerPozwolenia="02119" waznoscPozwolenia="Bezterminowy" kodATC="G02CB01" id="100002042">
+        <substancjeCzynne>
+            <substancjaCzynna>Bromocriptini mesylas</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990211913" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="2120" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="ABE" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acidum lacticum + Acidum salicylicum" moc="(89 mg + 89 mg)/g" postac="Plyn na skore" podmiotOdpowiedzialny="Grupa Inco S.A." typProcedury="NAR" numerPozwolenia="00409" waznoscPozwolenia="Bezterminowy" id="100002059">
+        <substancjeCzynne>
+            <substancjaCzynna>Acidum lacticum</substancjaCzynna>
+            <substancjaCzynna>Acidum salicylicum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="1" jednostkaWielkosci="op. 8 g" kodEAN="05909990040919" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="354" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="op. 8 g" kodEAN="05909990625796" kategoriaDostepnosci="OTC" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="47363" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Detimedac 200 mg" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Dacarbazinum" moc="200 mg" postac="proszek do sporzadzania roztworu do wstrzykiwan lub infuzji" podmiotOdpowiedzialny="medac Gesellschaft fur klinische Spezialpraparate mbH" typProcedury="NAR" numerPozwolenia="20782" waznoscPozwolenia="Bezterminowy" kodATC="L01AX04" id="100002131">
+        <substancjeCzynne>
+            <substancjaCzynna>Dacarbazinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="fiol. 200 mg" kodEAN="05909991029609" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="22520" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Acard" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acidum acetylsalicylicum" moc="75 mg" postac="Tabletki dojelitowe" podmiotOdpowiedzialny="Warszawskie Zaklady Farmaceutyczne POLFA S.A." typProcedury="NAR" numerPozwolenia="06725" waznoscPozwolenia="Bezterminowy" kodATC="B01AC06" id="100002148">
+        <substancjeCzynne>
+            <substancjaCzynna>Acidum acetylsalicylicum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990672516" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="360" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="tabl." kodEAN="05909990672523" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="362" />
+            <opakowanie wielkosc="90" jednostkaWielkosci="szt." kodEAN="05900257101237" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="122786" />
+            <opakowanie wielkosc="120" jednostkaWielkosci="szt." kodEAN="05900257101244" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="122787" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="ACC mini" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acetylcysteinum" moc="100 mg/sasz." postac="Proszek do sporzadzania roztworu" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="03315" waznoscPozwolenia="Bezterminowy" kodATC="R05CB01" id="100002154">
+        <substancjeCzynne>
+            <substancjaCzynna>Acetylcysteinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="20" jednostkaWielkosci="sasz. 3 g" kodEAN="05909990331512" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="363" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="364" />
+            <opakowanie wielkosc="40" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="365" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="366" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="367" />
+            <opakowanie wielkosc="100" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="368" />
+            <opakowanie wielkosc="300" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="369" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="ACC mini" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acetylcysteinum" moc="100 mg" postac="Tabletki musujace" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="03312" waznoscPozwolenia="Bezterminowy" kodATC="R05CB01" id="100002160">
+        <substancjeCzynne>
+            <substancjaCzynna>Acetylcysteinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909990331215" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="370" />
+            <opakowanie wielkosc="25" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="371" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="372" />
+            <opakowanie wielkosc="100" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="373" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="ACC" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acetylcysteinum" moc="200 mg" postac="Proszek do sporzadzania roztworu" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="03316" waznoscPozwolenia="Bezterminowy" kodATC="R05CB01" id="100002177">
+        <substancjeCzynne>
+            <substancjaCzynna>Acetylcysteinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="20" jednostkaWielkosci="sasz. 3 g" kodEAN="05909990331611" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="374" />
+            <opakowanie wielkosc="30" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="375" />
+            <opakowanie wielkosc="40" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="376" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="377" />
+            <opakowanie wielkosc="60" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="378" />
+            <opakowanie wielkosc="100" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="379" />
+            <opakowanie wielkosc="300" jednostkaWielkosci="torebek 3 g" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="380" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="ACC optima" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acetylcysteinum" moc="600 mg" postac="Tabletki musujace" podmiotOdpowiedzialny="Sandoz GmbH" typProcedury="NAR" numerPozwolenia="06910" waznoscPozwolenia="Bezterminowy" kodATC="R05CB01" id="100002208">
+        <substancjeCzynne>
+            <substancjaCzynna>Acetylcysteinum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="10" jednostkaWielkosci="tabl." kodEAN="05909990691012" kategoriaDostepnosci="OTC" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="387" />
+            <opakowanie wielkosc="20" jednostkaWielkosci="tabl." kodEAN="05909990691029" kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="388" />
+            <opakowanie wielkosc="50" jednostkaWielkosci="tabl." kategoriaDostepnosci="Rp" skasowane="TAK" numerEu="" dystrybutorRownolegly="" id="389" />
+        </opakowania>
+    </produktLeczniczy>
+    <produktLeczniczy nazwaProduktu="Acecor" rodzajPreparatu="ludzki" nazwaPowszechnieStosowana="Acebutololum" moc="400 mg" postac="Tabletki powlekane" podmiotOdpowiedzialny="SPA Societa Prodotti Antibiotici S.p.A." typProcedury="NAR" numerPozwolenia="06665" waznoscPozwolenia="Bezterminowy" kodATC="C07AB04" id="100002220">
+        <substancjeCzynne>
+            <substancjaCzynna>Acebutololi hydrochloridum</substancjaCzynna>
+        </substancjeCzynne>
+        <opakowania>
+            <opakowanie wielkosc="30" jednostkaWielkosci="tabl." kodEAN="05909990666515" kategoriaDostepnosci="Rp" skasowane="NIE" numerEu="" dystrybutorRownolegly="" id="391" />
+        </opakowania>
+    </produktLeczniczy>
+</produktyLecznicze>
