@@ -48,7 +48,7 @@
       </div>
 
       <div class="form-group row">
-        <label for="select" class="col-4 col-form-label">Duration</label>
+        <label for="select" class="col-4 col-form-label">Gender</label>
         <div class="col-4">
           <select
             id="select"

@@ -1,18 +1,21 @@
 package main
 
 import (
-	"e-clinic/src/drugs"
+	"e-clinic/src/backend/db"
+	"e-clinic/src/backend/drugs"
 	"encoding/xml"
 	"io/ioutil"
 	"log"
 	"os"
 	"strings"
 
+	"github.com/sirupsen/logrus"
+
 	"github.com/neo4j/neo4j-go-driver/neo4j"
 )
 
 func main() {
-	f, err := os.Open("/home/kamil/go/src/e-clinic/src/drugs/scripts/drugs.xml")
+	f, err := os.Open("/home/kamil/go/src/e-clinic/src/backend/drugs/scripts/drugs.xml")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -41,6 +44,10 @@ func main() {
 	}
 	defer session.Close()
 
+	logger := logrus.New()
+
+	sess := db.Init(logger)
+
 	count := 0
 	for _, p := range d.ProduktLeczniczy {
 		if len(p.SubstancjeCzynne.SubstancjaCzynna) == 0 {
@@ -52,6 +59,9 @@ func main() {
 		if p.NazwaProduktu == "" || len(p.SubstancjeCzynne.SubstancjaCzynna) == 0 {
 			continue
 		}
+
+		drugs.InsertToDb(sess, logger, &p)
+
 		_, err := session.Run(`MERGE (l:Lek { 
 				nazwa: $name, 
 				id: $id, 
@@ -86,7 +96,7 @@ func main() {
 					"sub":  strings.Trim(s, " "),
 				})
 			if err != nil {
-				log.Fatal(err)
+				logger.Fatal(err)
 			}
 
 		}

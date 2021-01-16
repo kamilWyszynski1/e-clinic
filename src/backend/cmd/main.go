@@ -7,7 +7,6 @@ import (
 	"e-clinic/src/backend/clinic/payment"
 	"e-clinic/src/backend/db"
 	payugo "e-clinic/src/backend/payu"
-	"fmt"
 	"net/http"
 	"os"
 	"time"
@@ -32,21 +31,21 @@ func main() {
 
 	configForNeo4j40 := func(conf *neo4j.Config) { conf.Encrypted = false }
 
-	driver, err := neo4j.NewDriver(fmt.Sprintf("bolt://%s:7687", os.Getenv("NEO_PATH")), neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
+	driver, err := neo4j.NewDriver("bolt://localhost:7687", neo4j.BasicAuth("drug", "drug", ""), configForNeo4j40)
 	if err != nil {
 		panic(err)
 	}
 
 	// For multidatabase support, set sessionConfig.DatabaseName to requested database
-	sessionConfig := neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite, DatabaseName: "neo4j"}
+	sessionConfig := neo4j.SessionConfig{AccessMode: neo4j.AccessModeRead}
 	session, err := driver.NewSession(sessionConfig)
 	if err != nil {
 		panic(err)
 	}
 
 	// CREATE SIMILARITY GRAPH
-	res, err := session.Run("call gds.graph.create('drug', ['Lek', 'Sub'], '*')", nil)
-	fmt.Println(res, err)
+	//res, err := session.Run("call gds.graph.create('drug', ['Lek', 'Sub'], '*')", nil)
+	//fmt.Println(res, err)
 	cli := handler.NewHandler(sess, log, session)
 	clinic.RegisterAssistant(cli, r, log)
 

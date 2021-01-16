@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h1>E-clinic bitches</h1>
+      <h1>E-clinic</h1>
       <router-link to="/">Home</router-link> |
       <router-link to="/profile">Profile</router-link> |
       <router-link to="/appointments">Appointments</router-link> |

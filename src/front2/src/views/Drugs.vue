@@ -1,5 +1,26 @@
 <template>
   <div class="drugs">
+    <form class="form" v-on:submit.prevent="submit">
+      <div class="form-group row">
+        <label for="symptoms" class="col-4 col-form-label">Drug name</label>
+        <div class="col-4">
+          <input
+            id="symptoms"
+            name="symptoms"
+            placeholder=""
+            type="text"
+            class="form-control"
+            aria-describedby="symptomsHelpBlock"
+            v-model="drugName"
+          />
+        </div>
+        <div class="form-group row">
+          <div class="offset-4 col-4">
+            <button name="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
     <div>
       <div class="drug">
         <table class="tg" id="customers">
@@ -20,8 +41,15 @@
               <td class="tg-0lax">{{ drug.strength }}</td>
               <td class="tg-0lax">{{ drug.shape }}</td>
             </tr> -->
-            <router-link v-bind:key="drug.id" v-for="drug in drugs" tag="tr"  :to="{name: 'drug', params: {id: drug.id}}">
-              <td class="tg-0lax"><b>{{ drug.name }}</b></td>
+            <router-link
+              v-bind:key="drug.id"
+              v-for="drug in drugs"
+              tag="tr"
+              :to="{ name: 'drug', params: { id: drug.id } }"
+            >
+              <td class="tg-0lax">
+                <b>{{ drug.name }}</b>
+              </td>
               <td class="tg-0lax">{{ drug.type_of_preparation }}</td>
               <td class="tg-0lax">{{ drug.common_name }}</td>
               <td class="tg-0lax">{{ drug.strength }}</td>
@@ -42,6 +70,7 @@ export default {
   data() {
     return {
       drugs: [],
+      drugName: "",
     };
   },
   mounted() {
@@ -50,6 +79,15 @@ export default {
         "http://localhost:8081/api/v1/Assistant/GetDrugs?prefix=&offset=0&limit=100"
       )
       .then((response) => (this.drugs = response.data.drugs));
+  },
+  methods: {
+    submit() {
+      axios
+      .get(
+        `http://localhost:8081/api/v1/Assistant/GetDrugs?prefix=${this.drugName}&offset=0&limit=100`
+      )
+      .then((response) => (this.drugs = response.data.drugs));
+    },
   },
 };
 </script>
