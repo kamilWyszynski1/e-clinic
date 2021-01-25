@@ -16,3 +16,6 @@ and [Neo4j](https://neo4j.com/) database for drug's replacement recomendations.
 * [VueJS](https://vuejs.org/)
 * [Neo4j](https://neo4j.com/)
 
+### Graph DB visualization
+
+![](https://i.imgur.com/WzHciTF.png)
